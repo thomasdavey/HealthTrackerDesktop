@@ -4,12 +4,9 @@ import java.util.Date;
 
 public class Goal {
 
-    /*
-    TODO
-    everything
-     */
-
+    private String description;
     private boolean completed;
     private Date completionDate;
+
 
 }

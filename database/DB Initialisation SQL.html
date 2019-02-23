@@ -1,0 +1,80 @@
+<!-- ORIGINAL TEST INPUTS -->
+
+CREATE TABLE PROFILE(
+  USERNAME VARCHAR(10) NOT NULL PRIMARY KEY ,
+  PASSWORD VARCHAR(10) NOT NULL,
+  FIRSTNAME VARCHAR(20) NOT NULL,
+  SURNAME VARCHAR(20) NOT NULL,
+  EMAIL VARCHAR(20) NOT NULL,
+  ACTIVE BIT
+)
+
+CREATE TABLE USER(
+  USERNAME VARCHAR(20) NOT NULL PRIMARY KEY,
+  HEIGHT INT,
+  WEIGHT INT,
+  BMI INT,
+  AGE INT,
+  FOREIGN KEY (USERNAME) REFERENCES PROFILE(USERNAME)
+)
+
+CREATE TABLE FOODS(
+  NAME VARCHAR(20) NOT NULL PRIMARY KEY,
+  KCALS INT,
+  PROTEIN INT,
+  CARBS INT,
+  FAT INT,
+  SUGAR INT
+)
+
+CREATE TABLE GOALS (
+  USERNAME VARCHAR(20) NOT NULL,
+  DESCRIPTION VARCHAR(50) NOT NULL,
+  COMPLETED BIT NOT NULL,
+  COMPLETIONDATE VARCHAR(10),
+  PRIMARY KEY (USERNAME, DESCRIPTION),
+  FOREIGN KEY (USERNAME) REFERENCES PROFILE (USERNAME),
+)
+
+<!-- POPULATE PROFILE/ USERS WITH TEST DATA -->
+INSERT INTO PROFILE VALUES ('jsmith', 'pw123', 'john', 'smith', 'j.smith@gmail.com', 1);
+INSERT INTO USER VALUES ('jsmith', 170, 88, 22, 30);
+INSERT INTO PROFILE VALUES ('pandapaul', 'panda123', 'paul', 'jones', 'pj@gmail.com', 1);
+INSERT INTO USER VALUES ('pandapaul', 160, 70, 21, 28);
+INSERT INTO PROFILE VALUES ('xloveyoux', 'xxxxx', 'lucy', 'locket', 'xxlocket@outlook.com', 1);
+INSERT INTO USER VALUES ('xloveyoux', 155, 88, 28, 40);
+INSERT INTO PROFILE VALUES ('kingjim', 'jimfit', 'jimmy', 'green', 'j.green@gmail.com', 1);
+INSERT INTO USER VALUES ('kingjim', 188, 106, 25, 67);
+INSERT INTO PROFILE VALUES ('ladyinred', 'lir1234', 'lisa', 'smith', 'l.smith@hotmail.com', 1);
+INSERT INTO USER VALUES ('ladyinred', 144, 49, 19, 19);
+INSERT INTO PROFILE VALUES ('8008s', 'powerme', 'alex', 'alexson', 'aalexson.@gmail.com', 1);
+INSERT INTO USER VALUES ('8008s', 165, 88, 23, 50);
+INSERT INTO PROFILE VALUES ('felix', 'fhealthman', 'felix', 'fox', 'foxy@aol.com', 1);
+INSERT INTO USER VALUES ('felix', 168, 50, 18, 43);
+INSERT INTO PROFILE VALUES ('killacod', 'pw12334', 'cory', 'manor', 'boyoman@outlook.com', 1);
+INSERT INTO USER VALUES ('killacod', 154, 65, 22, 16);
+INSERT INTO PROFILE VALUES ('jennyfort', 'ffort55', 'jenny', 'fort', 'j.fort@gmail.com', 1);
+INSERT INTO USER VALUES ('jennyfort', 151, 54, 17, 70);
+INSERT INTO PROFILE VALUES ('imacpro', 'stevejobs', 'tina', 'turner', 'lolol@msn.com', 1);
+INSERT INTO USER VALUES ('imacpro', 160, 120, 29, 24);
+
+<!-- POPULATE FOODS WITH TEST DATA -->
+INSERT INTO FOODS VALUES ('bread', '150', 2, 23, 6, 1);
+INSERT INTO FOODS VALUES ('cheese', '220', 10, 3, 12, 2);
+INSERT INTO FOODS VALUES ('chicken', '145', 21, 1, 5, 2);
+INSERT INTO FOODS VALUES ('tuna', '90', 17, 0, 1, 0);
+INSERT INTO FOODS VALUES ('cake', '350', 4, 23, 23, 15);
+INSERT INTO FOODS VALUES ('noodle', '150', 2, 23, 2, 3);
+INSERT INTO FOODS VALUES ('carrot', '40', 0, 9, 1, 0);
+INSERT INTO FOODS VALUES ('broccoli', '45', 0, 10, 1, 0);
+INSERT INTO FOODS VALUES ('banana', '175', 1, 16, 6, 9);
+INSERT INTO FOODS VALUES ('rice', '150', 1, 20, 3, 2);
+
+<!-- POPULATE GOALS WITH TEST DATA -->
+INSERT INTO GOALS VALUES ('killacod', 'lose 10kg', 0, 0);
+INSERT INTO GOALS VALUES ('killacod', 'lose 5kg', 1, '10/01/2017');
+INSERT INTO GOALS VALUES ('felix', 'get hench', 0, 0);
+INSERT INTO GOALS VALUES ('pandapaul', 'run 5 miles', 0, 0);
+INSERT INTO GOALS VALUES ('pandapaul', 'lose 10kg', 1, 11/03/2017);
+
+

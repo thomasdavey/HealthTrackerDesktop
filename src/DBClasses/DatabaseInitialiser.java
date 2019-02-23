@@ -1,0 +1,31 @@
+package DBClasses;
+
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+/**
+ *  NOT FOR USAGE AFTER INITIAL DB CREATION
+ */
+public class DatabaseInitialiser extends DBAccess{
+
+    public static void main(String[] args) {
+
+        try {
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(DB_URL, UN, PW);
+            st = conn.createStatement();
+
+            //st.executeUpdate("CREATE TABLE USERS (FIRSTNAME VARCHAR(10), SURNAME VARCHAR(10))");
+
+            st.close();
+            conn.close();
+            System.out.println("Table created successfully");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+}
