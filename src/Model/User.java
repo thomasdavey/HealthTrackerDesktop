@@ -10,12 +10,20 @@ public class User extends Profile {
     private int age;
     private ArrayList<Goal> goals;
 
-    public void addGoal(Goal g){
+    public User(){
+        goals = new ArrayList<>();
+    }
+
+    public void addGoal(Goal g) {
         goals.add(g);
     }
 
-    public void removeGoal(Goal g){
+    public void removeGoal(Goal g) {
         goals.remove(g);
+    }
+
+    public ArrayList<Goal> getGoals(){
+        return goals;
     }
 
     public void setHeight(int height) {
@@ -35,13 +43,9 @@ public class User extends Profile {
     }
 
     @Override
-    public String toString(){
-
-        StringBuilder s = new StringBuilder();
-        s.append(super.toString()).append("\n").append("Age: ").append(age).append("\n");
-        s.append("Height: ").append(height).append(" - Weight: ").append(weight).append(" - BMI: ").append(bmi);
-
-
-        return s.toString();
+    public String toString() {
+        String s = super.toString() + "\n" + "Age: " + age + "\n" +
+                "Height: " + height + " - Weight: " + weight + " - BMI: " + bmi;
+        return s;
     }
 }

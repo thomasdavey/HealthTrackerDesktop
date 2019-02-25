@@ -18,6 +18,7 @@ public class LoadUser extends DBAccess {
     private ArrayList<Goal> goals;
 
     public LoadUser(String un){
+        goals = new ArrayList<>();
         populateData(un);
 
         u = new User();
@@ -31,6 +32,10 @@ public class LoadUser extends DBAccess {
         u.setWeight(weight);
         u.setBmi(bmi);
         u.setAge(age);
+
+        for(Goal g: goals){
+            u.addGoal(g);
+        }
 
     }
 
@@ -64,10 +69,21 @@ public class LoadUser extends DBAccess {
             this.bmi = rs.getInt(4);
             this.age = rs.getInt(5);
 
+            // Goals
+            rs = st.executeQuery("SELECT * FROM GOALS WHERE USERNAME ='"+this.userName+"'");
+            while(rs.next()){
+                Goal g = new Goal();
+                g.setUser(this.userName);
+                g.setDescription(rs.getString(2));
+                g.setCompleted(rs.getBoolean(3));
+                g.setCompletionDate(rs.getString(4));
+                goals.add(g);
+            }
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+            conn.close();
+            st.close();
+
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
 
@@ -75,8 +91,9 @@ public class LoadUser extends DBAccess {
 
     public static void main(String[] args) {
 
-        User felix = new LoadUser("felix").getUser();
-        System.out.println(felix.toString());
+        User user = new LoadUser("killacod").getUser();
+        System.out.println(user.toString());
+        System.out.println(user.getGoals());
 
     }
 
