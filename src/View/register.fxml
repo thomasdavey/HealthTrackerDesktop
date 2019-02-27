@@ -28,12 +28,12 @@
                 </Label>
             </children>
         </HBox>
-        <Label layoutX="214.0" layoutY="55.0" style="-fx-font-family: Malgun Gothic; -fx-font-size: 30;" text="Longevity" textFill="WHITE">
+        <Label layoutX="214.0" layoutY="44.0" style="-fx-font-size: 30;" text="Longevity" textFill="WHITE">
             <graphic>
                 <FontAwesomeIconView glyphName="HEARTBEAT" style="-fx-fill: white; -fx-font-size: 30;" />
             </graphic>
         </Label>
-      <VBox alignment="TOP_RIGHT" layoutY="100.0" prefHeight="300.0" prefWidth="300.0" spacing="10.0">
+      <VBox alignment="TOP_RIGHT" layoutY="80.0" prefHeight="320.0" prefWidth="300.0" spacing="10.0">
          <children>
             <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="First Name" styleClass="textField">
                <VBox.margin>
@@ -41,6 +41,7 @@
                </VBox.margin>
             </TextField>
             <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Last Name" styleClass="textField" />
+            <DatePicker prefHeight="30.0" prefWidth="210.0" promptText="Birth Date" />
             <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Username" styleClass="textField" />
             <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Email Address" styleClass="textField" />
             <PasswordField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Password" styleClass="textField" />
@@ -49,8 +50,9 @@
             <Insets right="15.0" top="15.0" />
          </padding>
       </VBox>
-      <VBox layoutX="300.0" layoutY="100.0" prefHeight="300.0" prefWidth="300.0" spacing="10.0">
+      <VBox layoutX="300.0" layoutY="80.0" prefHeight="320.0" prefWidth="300.0" spacing="10.0">
          <children>
+            <ComboBox fx:id="sex" prefHeight="30.0" prefWidth="210.0" promptText="Sex" />
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" styleClass="textField">
                <children>
                   <TextField prefWidth="180.0" promptText="Height" style="-fx-prompt-text-fill: white; -fx-text-fill: white; -fx-background-color: transparent;" />
@@ -76,6 +78,6 @@
             <Insets left="15.0" top="15.0" />
          </padding>
       </VBox>
-      <Button layoutX="176.0" layoutY="332.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" style="-fx-background-color: rgba(255,255,255,0.3); -fx-text-fill: white; -fx-background-radius: 2px;" text="Register" />
+      <Button layoutX="176.0" layoutY="343.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" styleClass="confirmButton" text="Register" />
     </children>
 </AnchorPane>

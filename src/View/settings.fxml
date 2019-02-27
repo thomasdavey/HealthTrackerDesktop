@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: white;" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SettingsController">
+   <children>
+      <VBox prefHeight="650.0" prefWidth="225.0" style="-fx-background-color: linear-gradient(to bottom, #f37335, #fdc830);">
+         <children>
+            <Label alignment="CENTER" prefHeight="135.0" prefWidth="225.0" style="-fx-font-size: 27;" text="Longevity" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView glyphName="HEARTBEAT" style="-fx-fill: white; -fx-font-size: 27;" />
+               </graphic>
+            </Label>
+            <HBox onMouseClicked="#toHome" prefWidth="225.0" styleClass="sceneButton">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="60.0">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="16" styleClass="sceneButtonGlyph" />
+                     </graphic>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="40.0" prefWidth="165.0" text="Home" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox onMouseClicked="#toDailyLog" prefWidth="225.0" styleClass="sceneButton">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="60.0">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_CHECK_ALT" size="16" styleClass="sceneButtonGlyph" />
+                     </graphic>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="40.0" prefWidth="165.0" text="Daily Log" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox onMouseClicked="#toGoals" prefWidth="225.0" styleClass="sceneButton">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="60.0">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="LINE_CHART" size="16" styleClass="sceneButtonGlyph" />
+                     </graphic>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="40.0" prefWidth="165.0" text="Goals" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox onMouseClicked="#toGroups" prefWidth="225.0" styleClass="sceneButton">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="60.0">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="16" styleClass="sceneButtonGlyph" />
+                     </graphic>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="40.0" prefWidth="165.0" text="Groups" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox onMouseClicked="#toSettings" prefWidth="225.0" styleClass="sceneButtonSelected">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="60.0">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="COG" size="16" styleClass="sceneButtonGlyphSelected" />
+                     </graphic>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="40.0" prefWidth="165.0" text="Settings" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="225.0" prefHeight="650.0" prefWidth="775.0">
+         <children>
+            <HBox fx:id="topBar" alignment="CENTER_RIGHT" prefWidth="775.0" style="-fx-border-color: rgba(0,0,0,0.1); -fx-border-width: 0px 0px 1px 0px;">
+               <children>
+                  <Label prefWidth="665.0" style="-fx-text-fill: #818181;" text="Template" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#minimise" prefHeight="30.0" prefWidth="30.0" styleClass="topButton2">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="MINUS" styleClass="topGlyph2" translateY="1.0" />
+                     </graphic>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#close" prefHeight="30.0" prefWidth="30.0" styleClass="topButton2">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CLOSE" styleClass="topGlyph2" />
+                     </graphic>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox layoutY="30.0" prefHeight="620.0" prefWidth="775.0">
+               <padding>
+                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

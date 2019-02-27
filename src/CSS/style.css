@@ -1,4 +1,9 @@
+/* TOP BAR */
 .topButton {
+    -fx-background-color: transparent;
+}
+
+.topButton2 {
     -fx-background-color: transparent;
 }
 
@@ -6,12 +11,36 @@
     -fx-fill: white;
 }
 
+.topGlyph2 {
+    -fx-fill: rgba(0,0,0,0.5);
+}
+
 .topButton:hover {
     -fx-background-color: white;
 }
 
+.topButton2:hover {
+    -fx-background-color: rgba(0,0,0,0.5);
+}
+
 .topButton:hover *.topGlyph {
-    -fx-fill: #FCD369;
+    -fx-fill: #FFB835;
+}
+
+.topButton2:hover *.topGlyph2 {
+    -fx-fill: white;
+}
+
+/* REGISTER FORM */
+
+.confirmButton {
+    -fx-background-color:  rgba(255,255,255,0.3);
+    -fx-text-fill: white;
+    -fx-background-radius: 2px;
+}
+
+.confirmButton:hover {
+    -fx-background-color:  rgba(255,255,255,0.5);
 }
 
 .textField {
@@ -40,6 +69,11 @@
     -fx-text-fill: black;
 }
 
+.combo-box-popup .list-view .list-cell:filled:hover {
+    -fx-text-fill: white;
+    -fx-background-color: #F68F32;
+}
+
 .date-picker .text-field {
     -fx-background-color: transparent;
     -fx-prompt-text-fill: white;
@@ -54,4 +88,23 @@
     -fx-background-color: transparent;
     -fx-border-color: white;
     -fx-border-width: 0px 0px 0px 1px;
+}
+
+/* MAIN SCENE TEMPLATE */
+
+.sceneButton {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+}
+
+.sceneButton:hover, .sceneButtonSelected {
+    -fx-background-color: white;
+}
+
+.sceneButton:hover *.label, .sceneButtonSelected .label {
+    -fx-text-fill: #F58233;
+}
+
+.sceneButton:hover *.sceneButtonGlyph, .sceneButtonGlyphSelected {
+    -fx-fill: #F58233;
 }

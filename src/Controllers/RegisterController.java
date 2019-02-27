@@ -13,11 +13,13 @@ public class RegisterController implements Initializable {
 
     public HBox topBar;
     public ComboBox<String> activityLevels;
+    public ComboBox<String> sex;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Launch.makeStageDraggable(topBar);
         setActivityLevels();
+        setSex();
     }
 
     public void minimise(MouseEvent mouseEvent) {
@@ -33,5 +35,10 @@ public class RegisterController implements Initializable {
         activityLevels.getItems().add("2-5 hours per week");
         activityLevels.getItems().add("5-10 hours per week");
         activityLevels.getItems().add("More than 10 hours per week");
+    }
+
+    private void setSex() {
+        sex.getItems().add("Male");
+        sex.getItems().add("Female");
     }
 }

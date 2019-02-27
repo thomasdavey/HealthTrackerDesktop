@@ -4,9 +4,12 @@ import application.Launch;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,5 +36,14 @@ public class LoginController implements Initializable {
     public void register(MouseEvent mouseEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/View/register.fxml"));
         Launch.stage.getScene().setRoot(root);
+    }
+
+    public void login(MouseEvent mouseEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/View/home.fxml"));
+        Launch.stage.close();
+        Launch.stage = new Stage();
+        Launch.stage.initStyle(StageStyle.UNDECORATED);
+        Launch.stage.setScene(new Scene(root));
+        Launch.stage.show();
     }
 }
