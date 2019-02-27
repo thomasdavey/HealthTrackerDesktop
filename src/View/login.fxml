@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #fdc830, #f37335);" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
+   <children>
+      <HBox fx:id="topBar" alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="600.0" style="-fx-background-color: rgba(255,255,255,0.25);">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimise" prefHeight="30.0" prefWidth="30.0" styleClass="topButton">
+               <graphic>
+                  <FontAwesomeIconView glyphName="MINUS" styleClass="topGlyph" translateY="1.0" />
+               </graphic>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#close" prefHeight="30.0" prefWidth="30.0" styleClass="topButton">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CLOSE" styleClass="topGlyph" />
+               </graphic>
+            </Label>
+         </children>
+      </HBox>
+      <Label layoutX="158.0" layoutY="96.0" style="-fx-font-family: Malgun Gothic; -fx-font-size: 50;" text="Longevity" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView glyphName="HEARTBEAT" style="-fx-fill: white; -fx-font-size: 50;" />
+         </graphic>
+      </Label>
+      <HBox layoutX="176.0" layoutY="177.0" prefHeight="30.0" prefWidth="250.0" style="-fx-border-color: white; -fx-border-radius: 2px;">
+         <children>
+            <TextField prefHeight="30.0" prefWidth="220.0" promptText="Username" style="-fx-prompt-text-fill: white; -fx-text-fill: white; -fx-background-color: transparent;" />
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" size="15" />
+               </graphic>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="176.0" layoutY="219.0" prefHeight="30.0" prefWidth="250.0" style="-fx-border-color: white; -fx-border-radius: 2px;">
+         <children>
+            <PasswordField prefHeight="30.0" prefWidth="220.0" promptText="Password" style="-fx-prompt-text-fill: white; -fx-text-fill: white; -fx-background-color: transparent;" />
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="LOCK" size="15" />
+               </graphic>
+            </Label>
+         </children>
+      </HBox>
+      <Button fx:id="button" layoutX="175.0" layoutY="275.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" style="-fx-background-color: rgba(255,255,255,0.3); -fx-text-fill: white; -fx-background-radius: 2px;" text="Sign In" />
+      <Label layoutX="251.0" layoutY="363.0" onMouseClicked="#register" style="-fx-underline: true;" text="Not Registered?" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+   </children>
+</AnchorPane>
