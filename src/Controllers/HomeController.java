@@ -4,22 +4,39 @@ import application.Launch;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
 
     public HBox topBar;
+    public ProgressIndicator progress;
+    public Label progressString;
+    public Label currentDate;
 
-    
+    private SimpleDateFormat date = new SimpleDateFormat("EEEEE, dd MMMMM yyyy");
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Launch.makeStageDraggable(topBar);
+        progress.setProgress(0.5);
+
+        if (progress.getProgress() == 1) {
+            progressString.setText("Done");
+        } else {
+            progressString.setText((int) (progress.getProgress() * 100) + "%");
+        }
+
+        currentDate.setText(date.format(new Date()));
     }
 
     public void minimise(MouseEvent mouseEvent) {

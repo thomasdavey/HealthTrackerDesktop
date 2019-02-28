@@ -3,9 +3,12 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: white;" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
@@ -123,7 +126,7 @@
          <children>
             <HBox fx:id="topBar" alignment="CENTER_RIGHT" prefWidth="775.0" style="-fx-border-color: rgba(0,0,0,0.1); -fx-border-width: 0px 0px 1px 0px;">
                <children>
-                  <Label prefWidth="665.0" style="-fx-text-fill: #818181;" text="Template" />
+                  <Label prefWidth="665.0" style="-fx-text-fill: #818181;" text="Home" />
                   <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#minimise" prefHeight="30.0" prefWidth="30.0" styleClass="topButton2">
                      <graphic>
                         <FontAwesomeIconView glyphName="MINUS" styleClass="topGlyph2" translateY="1.0" />
@@ -136,10 +139,85 @@
                   </Label>
                </children>
             </HBox>
-            <VBox layoutY="30.0" prefHeight="620.0" prefWidth="775.0">
-               <padding>
-                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-               </padding>
+            <VBox alignment="TOP_CENTER" layoutY="30.0" prefHeight="620.0" prefWidth="775.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="675.0" text="Welcome, Thomas!" textFill="#00000080">
+                     <font>
+                        <Font name="PingFang HK Ultralight" size="48.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="675.0" text="Let's take a look at how your day's going..." textFill="#00000080">
+                     <font>
+                        <Font name="PingFang HK Thin" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" top="25.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="currentDate" alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="675.0" style="-fx-text-fill: #F8A032;" text="Date" textFill="#00000080">
+                     <font>
+                        <Font name="PingFang HK Semibold" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="50.0" top="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="TOP_CENTER" translateY="1.0">
+                     <children>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <ProgressIndicator fx:id="progress" prefHeight="200.0" prefWidth="200.0" progress="0.82" />
+                              <Circle fill="WHITE" layoutX="100.0" layoutY="91.0" radius="64.0" stroke="WHITE" strokeType="INSIDE" />
+                              <Label fx:id="progressString" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="150.0" prefWidth="150.0" text="0%" textFill="#00000080">
+                                 <font>
+                                    <Font name="PingFang HK Ultralight" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutY="192.0" prefWidth="200.0" text="Calories Remaining" textAlignment="CENTER" textFill="#000000cc">
+                                 <font>
+                                    <Font name="PingFang HK Thin" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <ProgressIndicator fx:id="progress1" prefHeight="200.0" prefWidth="200.0" progress="0.82" />
+                              <Circle fill="WHITE" layoutX="100.0" layoutY="91.0" radius="64.0" stroke="WHITE" strokeType="INSIDE" />
+                              <Label fx:id="progressString1" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="150.0" prefWidth="150.0" text="0%" textFill="#00000080">
+                                 <font>
+                                    <Font name="PingFang HK Ultralight" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutY="192.0" prefWidth="200.0" text="Days Until Goal" textAlignment="CENTER" textFill="#000000cc">
+                                 <font>
+                                    <Font name="PingFang HK Thin" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <ProgressIndicator fx:id="progress2" prefHeight="200.0" prefWidth="200.0" progress="0.82" />
+                              <Circle fill="WHITE" layoutX="100.0" layoutY="91.0" radius="64.0" stroke="WHITE" strokeType="INSIDE" />
+                              <Label fx:id="progressString2" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="150.0" prefWidth="150.0" text="0%" textFill="#00000080">
+                                 <font>
+                                    <Font name="PingFang HK Ultralight" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutY="192.0" prefWidth="200.0" text="Goal Progress" textAlignment="CENTER" textFill="#000000cc">
+                                 <font>
+                                    <Font name="PingFang HK Thin" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+               </children>
             </VBox>
          </children>
       </AnchorPane>

@@ -108,3 +108,20 @@
 .sceneButton:hover *.sceneButtonGlyph, .sceneButtonGlyphSelected {
     -fx-fill: #F58233;
 }
+
+.progress-indicator {
+    -fx-progress-color: #F8A032;
+}
+
+.progress-indicator .indicator {
+    -fx-background-color: white;
+    -fx-border-color: rgba(0,0,0,0.2);
+}
+
+.progress-indicator .percentage {
+    -fx-fill: transparent;
+}
+
+.progress-indicator .tick {
+    -fx-background-color: transparent;
+}
