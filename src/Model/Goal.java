@@ -1,6 +1,5 @@
 package Model;
 
-import java.util.Date;
 
 public class Goal {
 
@@ -13,28 +12,28 @@ public class Goal {
         return user;
     }
 
-    public void setUser(String user) {
-        this.user = user;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public boolean isCompleted() {
         return completed;
     }
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
-
     public String getCompletionDate() {
         return completionDate;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
     public void setCompletionDate(String completionDate) {

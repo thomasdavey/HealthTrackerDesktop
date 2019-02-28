@@ -15,7 +15,7 @@ public class DatabaseInitialiser extends DBAccess{
             conn = DriverManager.getConnection(DB_URL, UN, PW);
             st = conn.createStatement();
 
-            //st.executeUpdate("CREATE TABLE USERS (FIRSTNAME VARCHAR(10), SURNAME VARCHAR(10))");
+            //st.executeUpdate("");
 
             st.close();
             conn.close();
