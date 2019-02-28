@@ -2,6 +2,10 @@ package Model;
 
 
 import java.text.DecimalFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class Calculator {
 
@@ -157,7 +161,49 @@ public class Calculator {
         return targetCarbs;
     }
 
-    //optional methods to calculate target fat/carbs/protein/sugar
+    public static int getWeightLossExtremity(Goal goal){
+        int extremity;
+
+        double weightLoss = goal.getWeightLossKG();
+        Date targetDate = goal.getTargetDate();
+        Date today = Calendar.getInstance().getTime();
+
+        long difference = targetDate.getTime() - today.getTime();
+        double daysBetween = (difference / (1000*60*60*24));
+        double numWeeks = daysBetween/7;
+
+        double kgPerWeek = (int) (weightLoss/numWeeks);
+
+        //
+        if (kgPerWeek > -4 && kgPerWeek < -2){
+            extremity = -3;
+        }
+        else if (kgPerWeek > -2 && kgPerWeek < -1){
+            extremity = -2;
+        }
+        else if (kgPerWeek > -1 && kgPerWeek < 0){
+            extremity = -1;
+        }
+        else if (kgPerWeek == 0){
+            extremity = 0;
+        }
+        else if (kgPerWeek > 0 && kgPerWeek < 1){
+            extremity = 1;
+        }
+        else if (kgPerWeek > 1 && kgPerWeek < 2){
+            extremity = 2;
+        }
+        else if (kgPerWeek > 2 && kgPerWeek < 4){
+            extremity = 3;
+        }
+        else{
+            System.out.println("Please set a different goal." +
+                    "This goal is too difficult to acheive within the time limit.");
+            return 0;
+        }
+
+        return extremity;
+    }
 
     //method calculating goal progress
 
