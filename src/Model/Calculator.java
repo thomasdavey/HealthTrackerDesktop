@@ -79,14 +79,14 @@ public class Calculator {
     //method that uses above two methods and desired weight loss/gain to calculate target calories
     //this must also calculate calorie deficit based on how extreme weight loss is
     //maybe give goal a numeric value that helps to calculate calories deficit.
-    public static int targetCalories(double metabolicRate, double energyExpenditure, double weightLoss){
+    public static int targetCalories(double metabolicRate, double energyExpenditure, double extremity){
 
         int targetCalories = 0;
         int dailyCals = dailyCals(metabolicRate, energyExpenditure);
 
         //weightloss given a value -3 to 3. negative values are for weight loss, positive for gain
         //-3 indicates a more extreme weight loss goal than -1
-        int calorieDeficit = (int) (dailyCals*(weightLoss/10));
+        int calorieDeficit = (int) (dailyCals*(-(extremity/10)));
 
         targetCalories = (int) dailyCals - calorieDeficit;
 
@@ -216,7 +216,7 @@ public class Calculator {
         System.out.println("ideal body weight: " + numFormat.format(idealBodyWeight(170, 'F')));
         double bmr = metabolicRate(74.8, 170, 19, 'F');
         System.out.println("bmr: " + numFormat.format(bmr));
-        int cals = targetCalories(bmr, 1.2, 3);
+        int cals = targetCalories(bmr, 1.2, -2);
         System.out.println("target calories: " + cals);
 
         //testing methods with toms measurements
