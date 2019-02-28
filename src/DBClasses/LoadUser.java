@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class LoadUser extends DBAccess {
 
-    User u;
+    private User u;
 
     private String userName, password, firstName, lastName, email;
     private boolean active;
@@ -22,6 +22,7 @@ public class LoadUser extends DBAccess {
         populateData(un);
 
         u = new User();
+        u.setUserName(userName);
         u.setPassword(password);
         u.setFirstName(firstName);
         u.setLastName(lastName);
@@ -91,7 +92,8 @@ public class LoadUser extends DBAccess {
 
     public static void main(String[] args) {
 
-        User user = new LoadUser("killacod").getUser();
+        User user = new LoadUser("imacpro").getUser();
+        System.out.println(user.getUserName());
         System.out.println(user.toString());
         System.out.println(user.getGoals());
 

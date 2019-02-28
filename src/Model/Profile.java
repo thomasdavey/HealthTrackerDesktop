@@ -45,6 +45,26 @@ public abstract class Profile {
         this.active = active;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     @Override
     public String toString(){
         StringBuilder s = new StringBuilder();
