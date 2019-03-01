@@ -10,7 +10,7 @@ public class User extends Profile {
     private int age;
     private ArrayList<Goal> goals;
 
-    public User(){
+    public User() {
         goals = new ArrayList<>();
     }
 
@@ -22,7 +22,7 @@ public class User extends Profile {
         goals.remove(g);
     }
 
-    public ArrayList<Goal> getGoals(){
+    public ArrayList<Goal> getGoals() {
         return goals;
     }
 

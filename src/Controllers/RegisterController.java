@@ -33,7 +33,7 @@ public class RegisterController implements Initializable {
     private void setActivityLevels() {
         activityLevels.getItems().add("Less than 2 hours per week");
         activityLevels.getItems().add("2-5 hours per week");
-        activityLevels.getItems().add("5-10 hours per week");
+        activityLevels.getItems().add("6-10 hours per week");
         activityLevels.getItems().add("More than 10 hours per week");
     }
 
