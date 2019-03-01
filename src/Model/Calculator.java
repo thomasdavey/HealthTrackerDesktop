@@ -164,7 +164,7 @@ public class Calculator {
     public static int getWeightLossExtremity(Goal goal){
         int extremity;
 
-        double weightLoss = goal.getWeightLossKG();
+        double weightLoss = goal.getTargetWeightLoss();
         Date targetDate = goal.getTargetDate();
         Date today = Calendar.getInstance().getTime();
 

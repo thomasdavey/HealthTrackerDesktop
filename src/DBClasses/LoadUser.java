@@ -73,12 +73,12 @@ public class LoadUser extends DBAccess {
             // Goals
             rs = st.executeQuery("SELECT * FROM GOALS WHERE USERNAME ='"+this.userName+"'");
             while(rs.next()){
-                Goal g = new Goal();
-                g.setUser(this.userName);
-                g.setDescription(rs.getString(2));
-                g.setCompleted(rs.getBoolean(3));
-                g.setCompletionDate(rs.getString(4));
-                goals.add(g);
+                //Goal g = new Goal();
+                //g.setUser(this.userName);
+                //g.setDescription(rs.getString(2));
+                //g.setCompleted(rs.getBoolean(3));
+                //g.setCompletionDate(rs.getString(4));
+                //goals.add(g);
             }
 
             conn.close();

@@ -65,7 +65,7 @@ public final class DBRemoval extends DBAccess {
         getConnection();
         try {
             stat.executeUpdate("DELETE FROM GOALS WHERE USERNAME ='"
-                    +u.getUserName()+"' AND DESCRIPTION ='"+g.getDescription()+"'");
+                    +u.getUserName());
             System.out.println("Goal: "+g+" removed!");
         } catch (SQLException e) {
             e.printStackTrace();
