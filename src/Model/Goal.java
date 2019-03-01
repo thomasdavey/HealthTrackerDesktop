@@ -1,59 +1,75 @@
 package Model;
 
+import java.util.Calendar;
+import java.util.Date;
 
 public class Goal {
 
-    private String user;
-    private String description;
-    private boolean completed;
-    private String completionDate;
+    //private User user;
+    //private String description;
     private double weightLossKG;
     private Date targetDate;
+    private boolean completed;
 
-    public String getUser() {
-        return user;
+    static Date today = Calendar.getInstance().getTime();
+
+    public Goal(double weightLossKG, Date targetDate){
+
+        //making sure the user cannot set the target date to today or the past
+        long difference = targetDate.getTime() - today.getTime();
+        double daysBetween = (difference / (1000*60*60*24));
+
+        if (daysBetween > 0){
+            this.targetDate = targetDate;
+        }
+        else {
+            System.out.println("Please select a target date in the future");
+            return;
+        }
+
+        this.weightLossKG = weightLossKG;
+        this.completed = false;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
     public boolean isCompleted() {
+
         return completed;
     }
 
-    public String getCompletionDate() {
-        return completionDate;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public void setCompleted(boolean completed) {
+
         this.completed = completed;
     }
 
-    public void setCompletionDate(String completionDate) {
-        this.completionDate = completionDate;
-    }
+    public double getWeightLossKG(){ return
+            weightLossKG;}
 
-    public double getWeightLossKG(){ return weightLossKG;}
+    public void setWeightLossKG(int weightLossKG){
+        this.weightLossKG = weightLossKG;}
 
-    public void setWeightLossKG(int weightLossKG){this.weightLossKG = weightLossKG;}
+    public Date getTargetDate() {
+        return targetDate; }
 
-    public Date getTargetDate() {return targetDate; }
-
-    public void setTargetDate(Date targetDate) { this.targetDate = targetDate; }
+    public void setTargetDate(Date targetDate) {
+        this.targetDate = targetDate; }
 
 
     @Override
     public String toString(){
 
-        return description;
+        String goalString = "Lose " + weightLossKG + "kg by " + targetDate;
+
+        return goalString;
     }
+
+    public static void main(String args[]){
+
+    Goal myGoal = new Goal(10, today);
+
+    }
+
 }
+
+
+
