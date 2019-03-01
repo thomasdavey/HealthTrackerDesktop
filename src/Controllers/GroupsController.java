@@ -15,7 +15,7 @@ public class GroupsController implements Initializable {
 
     public HBox topBar;
 
-    
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

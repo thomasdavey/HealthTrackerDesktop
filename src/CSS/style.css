@@ -125,3 +125,16 @@
 .progress-indicator .tick {
     -fx-background-color: transparent;
 }
+
+.axis-label {
+    -fx-text-fill: #818181;
+    -fx-font-family: "PingFang HK";
+}
+
+.chart-plot-background {
+
+}
+
+.chartMeasure {
+
+}
