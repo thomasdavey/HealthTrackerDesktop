@@ -18,6 +18,7 @@ public final class DBRemoval extends DBAccess {
 
     }
 
+    @SuppressWarnings("Duplicates")
     private static void getConnection(){
         try {
             Class.forName(JDBC_DRIVER);

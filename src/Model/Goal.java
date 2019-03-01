@@ -1,12 +1,21 @@
 package Model;
 
 
+import java.sql.Date;
+
 public class Goal {
 
     private String user;
     private String description;
     private boolean completed;
-    private String completionDate;
+    private Date completionDate;
+
+    public Goal(String user, String description, boolean completed, Date completionDate){
+        this.user = user;
+        this.description = description;
+        this.completed = completed;
+        this.completionDate = completionDate;
+    }
 
     public String getUser() {
         return user;
@@ -20,7 +29,7 @@ public class Goal {
         return completed;
     }
 
-    public String getCompletionDate() {
+    public Date getCompletionDate() {
         return completionDate;
     }
 
@@ -36,7 +45,7 @@ public class Goal {
         this.completed = completed;
     }
 
-    public void setCompletionDate(String completionDate) {
+    public void setCompletionDate(Date completionDate) {
         this.completionDate = completionDate;
     }
 

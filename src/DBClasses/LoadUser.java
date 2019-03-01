@@ -21,8 +21,7 @@ public class LoadUser extends DBAccess {
         goals = new ArrayList<>();
         populateData(un);
 
-        u = new User();
-        u.setUserName(userName);
+        u = new User(userName);
         u.setPassword(password);
         u.setFirstName(firstName);
         u.setLastName(lastName);
@@ -73,11 +72,7 @@ public class LoadUser extends DBAccess {
             // Goals
             rs = st.executeQuery("SELECT * FROM GOALS WHERE USERNAME ='"+this.userName+"'");
             while(rs.next()){
-                Goal g = new Goal();
-                g.setUser(this.userName);
-                g.setDescription(rs.getString(2));
-                g.setCompleted(rs.getBoolean(3));
-                g.setCompletionDate(rs.getString(4));
+                Goal g = new Goal(this.userName, rs.getString(2), rs.getBoolean(3), rs.getDate(4));
                 goals.add(g);
             }
 

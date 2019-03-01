@@ -4,13 +4,15 @@ import java.util.ArrayList;
 
 public class User extends Profile {
 
+    private String userName;
     private int height;
     private int weight;
     private int bmi;
     private int age;
     private ArrayList<Goal> goals;
 
-    public User() {
+    public User(String userName) {
+        this.userName = userName;
         goals = new ArrayList<>();
     }
 
@@ -40,6 +42,26 @@ public class User extends Profile {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getUserName(){
+        return userName;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public int getBmi() {
+        return bmi;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     @Override
