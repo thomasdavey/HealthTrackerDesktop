@@ -35,7 +35,7 @@ public final class DBAdd extends DBAccess{
         }
     }
 
-    public static void AddUser(User u){
+    public static void addUser(User u){
 
         getConnection();
         try {
@@ -50,7 +50,7 @@ public final class DBAdd extends DBAccess{
 
     }
 
-    public static void AddFood(Food f){
+    public static void addFood(Food f){
         getConnection();
         try {
             stat.executeUpdate("INSERT INTO FOODS VALUES ('"+f.getName()+"', "+f.getKcals()+", "
@@ -61,7 +61,7 @@ public final class DBAdd extends DBAccess{
         closeConnection();
     }
 
-    public static void AddGoal(Goal g){
+    public static void addGoal(Goal g){
         getConnection();
         try {
             stat.executeUpdate("INSERT INTO GOALS VALUES ('"+g.getUser()+"', '"
@@ -72,32 +72,51 @@ public final class DBAdd extends DBAccess{
         closeConnection();
     }
 
+    public static void addCalories(String u, Date d, int c){
+        getConnection();
+        try {
+            stat.executeUpdate("INSERT INTO CALORIECOUNTS VALUES ('"+u+"', '"+d+"', "+c+")");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+    }
+
     public static void main(String[] args) {
 
-        // Test adding a user
-        User Rodney = new User("rodney");
-        Rodney.setPassword("rodders123");
-        Rodney.setFirstName("rodney");
-        Rodney.setLastName("trotter");
-        Rodney.setEmail("r.trotter@msn.com");
-        Rodney.setActive(true);
-        Rodney.setHeight(167);
-        Rodney.setWeight(68);
-        Rodney.setBmi(19);
-        Rodney.setAge(32);
+//        // Test adding a user
+//        User Rodney = new User("rodney");
+//        Rodney.setPassword("rodders123");
+//        Rodney.setFirstName("rodney");
+//        Rodney.setLastName("trotter");
+//        Rodney.setEmail("r.trotter@msn.com");
+//        Rodney.setActive(true);
+//        Rodney.setHeight(167);
+//        Rodney.setWeight(68);
+//        Rodney.setBmi(19);
+//        Rodney.setAge(32);
 //
 //        System.out.println(Rodney);
-//        AddUser(Rodney);
+//        addUser(Rodney);
 
-        // Test adding a food
+//        // Test adding a food
 //        Food bacon = new Food("bacon", 65, 20, 2, 15, 1);
 //        System.out.println(bacon);
-//        AddFood(bacon);
+//        addFood(bacon);
 
-        // Test adding goal
-        Goal goal = new Goal(Rodney.getUserName(), "Lose my fatty belly",
-                true, new Date(119, 0, 15));
-        System.out.println(goal);
-        AddGoal(goal);
+//        // Test adding goal
+//        Goal goal = new Goal(Rodney.getUserName(), "Lose my fatty belly",
+//                true, new Date(119, 0, 15));
+//        System.out.println(goal);
+//        addGoal(goal);
+
+        // Test adding calorie counts
+        addCalories("rodney", new Date(119, 1, 20), 1850);
+        addCalories("rodney", new Date(119, 1, 21), 2010);
+        addCalories("rodney", new Date(119, 1, 22), 1400);
+        addCalories("rodney", new Date(119, 1, 23), 2000);
+        addCalories("rodney", new Date(119, 1, 24), 1900);
+        addCalories("rodney", new Date(119, 1, 25), 1960);
+        addCalories("rodney", new Date(119, 1, 26), 2150);
     }
 }
