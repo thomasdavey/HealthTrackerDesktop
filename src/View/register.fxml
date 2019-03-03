@@ -11,10 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #fdc830, #f37335);" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegisterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="650.0" style="-fx-background-color: linear-gradient(to bottom, #fdc830, #f37335);" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegisterController">
     <children>
-        <HBox fx:id="topBar" alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="600.0" style="-fx-background-color: rgba(255,255,255,0.25);">
+        <HBox fx:id="topBar" alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="650.0" style="-fx-background-color: rgba(255,255,255,0.25);">
             <children>
                 <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimise" prefHeight="30.0" prefWidth="30.0" styleClass="topButton">
                     <graphic>
@@ -28,56 +29,68 @@
                 </Label>
             </children>
         </HBox>
-        <Label layoutX="214.0" layoutY="44.0" style="-fx-font-size: 30;" text="Longevity" textFill="WHITE">
+        <Label layoutX="239.0" layoutY="55.0" style="-fx-font-size: 30;" text="Longevity" textFill="WHITE">
             <graphic>
                 <FontAwesomeIconView glyphName="HEARTBEAT" style="-fx-fill: white; -fx-font-size: 30;" />
             </graphic>
         </Label>
-      <VBox alignment="TOP_RIGHT" layoutY="80.0" prefHeight="320.0" prefWidth="300.0" spacing="10.0">
+      <HBox layoutY="115.0" prefHeight="360.0" prefWidth="650.0" style="-fx-background-color: white;" />
+      <Label fx:id="sexPrompt" layoutX="358.0" layoutY="152.0" text="Sex" textFill="#00000066" />
+      <Label fx:id="activityPrompt" layoutX="358.0" layoutY="281.0" text="Activity Level" textFill="#00000066" />
+      <HBox layoutY="115.0">
          <children>
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="First Name" styleClass="textField">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </TextField>
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Last Name" styleClass="textField" />
-            <DatePicker prefHeight="30.0" prefWidth="210.0" promptText="Birth Date" />
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Username" styleClass="textField" />
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Email Address" styleClass="textField" />
-            <PasswordField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Password" styleClass="textField" />
+            <VBox alignment="TOP_CENTER" prefHeight="360.0" prefWidth="325.0" spacing="13.0">
+               <children>
+                  <TextField fx:id="firstName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="First Name" styleClass="registerField">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="lastName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Last Name" styleClass="registerField" />
+                  <DatePicker fx:id="dob" editable="false" prefHeight="30.0" prefWidth="250.0" promptText="Birth Date" styleClass="registerField" />
+                  <TextField fx:id="userName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Username" styleClass="registerField" />
+                  <TextField fx:id="email" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Email Address" styleClass="registerField" />
+                  <PasswordField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Password" styleClass="registerField" />
+               </children>
+               <padding>
+                  <Insets left="30.0" top="30.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="360.0" prefWidth="325.0" spacing="13.0">
+               <children>
+                  <ComboBox fx:id="sex" onMouseClicked="#setSex" prefHeight="30.0" prefWidth="250.0" styleClass="registerField" />
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" styleClass="registerField">
+                     <children>
+                        <TextField fx:id="height" prefWidth="220.0" promptText="Height" style="-fx-prompt-text-fill: rgba(0,0,0,0.4); -fx-text-fill: rgba(0,0,0,0.8); -fx-background-color: transparent;" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" text="cm" textFill="#00000066" />
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" styleClass="registerField">
+                     <children>
+                        <TextField fx:id="weight" prefWidth="220.0" promptText="Weight" style="-fx-prompt-text-fill: rgba(0,0,0,0.4); -fx-text-fill: rgba(0,0,0,0.8); -fx-background-color: transparent;" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" text="kg" textFill="#00000066" />
+                     </children>
+                  </HBox>
+                  <ComboBox fx:id="activityLevel" onMouseClicked="#setActivityLevel" prefHeight="30.0" prefWidth="250.0" styleClass="registerField" />
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" styleClass="registerField">
+                     <children>
+                        <TextField fx:id="targetWeight" prefWidth="220.0" promptText="Target Weight" style="-fx-prompt-text-fill: rgba(0,0,0,0.4); -fx-text-fill: rgba(0,0,0,0.8); -fx-background-color: transparent;" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" text="kg" textFill="#00000066" />
+                     </children>
+                  </HBox>
+                  <DatePicker fx:id="targetDate" prefHeight="30.0" prefWidth="250.0" promptText="Target Date" styleClass="registerField" />
+               </children>
+               <padding>
+                  <Insets right="30.0" top="30.0" />
+               </padding>
+            </VBox>
          </children>
-         <padding>
-            <Insets right="15.0" top="15.0" />
-         </padding>
-      </VBox>
-      <VBox layoutX="300.0" layoutY="80.0" prefHeight="320.0" prefWidth="300.0" spacing="10.0">
-         <children>
-            <ComboBox fx:id="sex" prefHeight="30.0" prefWidth="210.0" promptText="Sex" />
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" styleClass="textField">
-               <children>
-                  <TextField prefWidth="180.0" promptText="Height" style="-fx-prompt-text-fill: white; -fx-text-fill: white; -fx-background-color: transparent;" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" text="cm" textFill="WHITE" />
-               </children>
-            </HBox>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" styleClass="textField">
-               <children>
-                  <TextField prefWidth="180.0" promptText="Weight" style="-fx-prompt-text-fill: white; -fx-text-fill: white; -fx-background-color: transparent;" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" text="kg" textFill="WHITE" />
-               </children>
-            </HBox>
-            <ComboBox fx:id="activityLevels" prefHeight="30.0" prefWidth="210.0" promptText="Activity Level" />
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" styleClass="textField">
-               <children>
-                  <TextField prefWidth="180.0" promptText="Target Weight" style="-fx-prompt-text-fill: white; -fx-text-fill: white; -fx-background-color: transparent;" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" text="kg" textFill="WHITE" />
-               </children>
-            </HBox>
-            <DatePicker prefHeight="30.0" prefWidth="210.0" promptText="Target Date" />
-         </children>
-         <padding>
-            <Insets left="15.0" top="15.0" />
-         </padding>
-      </VBox>
-      <Button layoutX="176.0" layoutY="343.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" styleClass="confirmButton" text="Register" />
+      </HBox>
+      <Label fx:id="validationText" alignment="CENTER" contentDisplay="CENTER" layoutY="453.0" prefWidth="650.0" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Button layoutX="201.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#registerSubmit" prefHeight="30.0" prefWidth="250.0" styleClass="registerButton" text="Register" />
     </children>
 </AnchorPane>

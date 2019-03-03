@@ -33,14 +33,24 @@
 
 /* REGISTER FORM */
 
-.confirmButton {
-    -fx-background-color:  rgba(255,255,255,0.3);
+.loginButton {
+    -fx-background-color: rgba(255,255,255,0.3);
     -fx-text-fill: white;
     -fx-background-radius: 2px;
 }
 
-.confirmButton:hover {
-    -fx-background-color:  rgba(255,255,255,0.5);
+.loginButton:hover {
+    -fx-background-color: rgba(255,255,255,0.5);
+}
+
+.registerButton {
+    -fx-background-color: #FDBC12;
+    -fx-text-fill: white;
+    -fx-background-radius: 2px;
+}
+
+.registerButton:hover {
+    -fx-background-color: #FDD468;
 }
 
 .textField {
@@ -58,11 +68,15 @@
 }
 
 .combo-box .list-cell {
-    -fx-text-fill: white;
+    -fx-text-fill: rgba(0,0,0,0.4);
+}
+
+.combo-box .cell:selected {
+    -fx-text-fill: rgba(0,0,0,0.8);
 }
 
 .combo-box .arrow {
-    -fx-background-color: white;
+    -fx-background-color: rgba(0,0,0,0.4);
 }
 
 .combo-box-popup .list-view .list-cell {
@@ -76,18 +90,26 @@
 
 .date-picker .text-field {
     -fx-background-color: transparent;
-    -fx-prompt-text-fill: white;
-    -fx-text-fill: white;
+    -fx-prompt-text-fill: rgba(0,0,0,0.4);
+    -fx-text-fill: rgba(0,0,0,0.8);
 }
 
 .date-picker .arrow {
-    -fx-background-color: white;
+    -fx-background-color: rgba(0,0,0,0.4);
 }
 
 .date-picker .arrow-button {
     -fx-background-color: transparent;
-    -fx-border-color: white;
+    -fx-border-color: rgba(0,0,0,0.3);
     -fx-border-width: 0px 0px 0px 1px;
+}
+
+.registerField {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0,0,0,0.3);
+    -fx-border-radius: 2px;
+    -fx-prompt-text-fill: rgba(0,0,0,0.4);
+    -fx-text-fill: rgba(0,0,0,0.8);
 }
 
 /* MAIN SCENE TEMPLATE */
