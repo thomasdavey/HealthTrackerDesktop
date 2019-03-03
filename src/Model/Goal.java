@@ -38,6 +38,13 @@ public class Goal {
         this.completed = false;
     }
 
+    public String getID(){
+        return id;
+    }
+
+    public void setID(String s){
+        id = s;
+    }
 
     public boolean isCompleted() {
 
@@ -46,6 +53,10 @@ public class Goal {
 
     public boolean isActive(){
         return active;
+    }
+
+    public void setActive(boolean b){
+        active = b;
     }
 
     public void setCompleted(boolean completed) {
@@ -76,6 +87,10 @@ public class Goal {
 
     public int getStartDays() {
         return this.startDays;
+    }
+
+    public void setStartDays(int i){
+        startDays = i;
     }
 
     public void setTargetDate(Date targetDate) {

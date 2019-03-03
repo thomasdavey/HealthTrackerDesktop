@@ -76,10 +76,16 @@ public class LoadUser extends DBAccess {
         this.activityLevel = rs.getDouble(7);
 
         // Goals
-        rs = st.executeQuery("SELECT * FROM GOALS WHERE USERNAME ='" + this.userName + "'");
+        rs = st.executeQuery("SELECT * FROM GOALS WHERE ID ='" + this.userName + "'");
         while (rs.next()) {
-            //Goal g = new Goal(this.userName, rs.getString(2), rs.getBoolean(3), rs.getDate(4));
-            //goals.add(g);
+            Goal g = new Goal(rs.getDouble(2), rs.getDate(3));
+            g.setID(rs.getString(1));
+            g.setCompleted(rs.getBoolean((4)));
+            g.setActive(rs.getBoolean(5));
+            g.setStartDays(rs.getInt(6));
+            //g.setWeightLossProgress();        This field requires current weight to calculate
+            g.setPercentLost();
+            goals.add(g);
         }
 
         closeConnection();
@@ -100,7 +106,7 @@ public class LoadUser extends DBAccess {
         return kcals;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         //User user = new LoadUser("imacpro").getUser();
         //System.out.println(user.getUserName());
@@ -109,6 +115,10 @@ public class LoadUser extends DBAccess {
 
         //int rodneyCals = getCaloriesByDate("rodney", new Date(119, 1, 23));
         //System.out.println(rodneyCals);
+
+        //User user = new LoadUser("ladyinred").getUser();
+        //System.out.println(user.getGoals());
+
 
     }
 
