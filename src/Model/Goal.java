@@ -3,6 +3,7 @@ package Model;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Goal {
 
@@ -10,6 +11,7 @@ public class Goal {
     private Date targetDate;
     private boolean completed;
     private boolean active;
+    private int startDays;
 
     private double weightLossProgress;
     private double percentLost;
@@ -31,6 +33,7 @@ public class Goal {
 
         //if the target date is okay then we can set the other variables as normal
         this.targetWeightLoss = targetWeightLoss;
+        this.startDays = getDaysRemaining();
         this.completed = false;
     }
 
@@ -57,7 +60,18 @@ public class Goal {
 
     public Date getTargetDate() {
 
-        return targetDate; }
+        return targetDate;
+    }
+
+    public int getDaysRemaining() {
+        Date date = new Date();
+        long difference = date.getTime() - this.targetDate.getTime();
+        return -1 * (int)TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
+    }
+
+    public int getStartDays() {
+        return this.startDays;
+    }
 
     public void setTargetDate(Date targetDate) {
 
