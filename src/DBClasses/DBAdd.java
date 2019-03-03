@@ -5,6 +5,7 @@ import Model.Goal;
 import Model.User;
 
 import java.sql.*;
+import java.util.Calendar;
 
 public final class DBAdd extends DBAccess{
 
@@ -31,7 +32,7 @@ public final class DBAdd extends DBAccess{
         getConnection();
         try {
             st.executeUpdate("INSERT INTO FOODS VALUES ('"+f.getName()+"', "+f.getKcals()+", "
-                    +f.getProtein()+", "+f.getCarbs()+", "+f.getFat()+", "+f.getSugar()+")");
+                    +f.getProtein()+", "+f.getCarbs()+", "+f.getFat()+")");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -56,6 +57,20 @@ public final class DBAdd extends DBAccess{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        closeConnection();
+    }
+
+    public static void updateCalories(String u, int c){
+        getConnection();
+        Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+
+        try {
+            st.executeUpdate("UPDATE CALORIECOUNTS SET KCALS = KCALS + "
+                    +c+" WHERE USERNAME = '"+u+"' AND DATE = '"+date+"'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         closeConnection();
     }
 
@@ -87,13 +102,18 @@ public final class DBAdd extends DBAccess{
 //        System.out.println(goal);
 //        addGoal(goal);
 
-        // Test adding calorie counts
-        addCalories("ladyinred", new Date(119, 1, 20), 1500);
-        addCalories("ladyinred", new Date(119, 1, 21), 910);
-        addCalories("ladyinred", new Date(119, 1, 22), 1400);
-        addCalories("ladyinred", new Date(119, 1, 23), 1200);
-        addCalories("ladyinred", new Date(119, 1, 24), 1330);
-        addCalories("ladyinred", new Date(119, 1, 25), 1060);
-        addCalories("ladyinred", new Date(119, 1, 26), 1333);
+//        // Test adding calorie counts
+//        addCalories("ladyinred", new Date(119, 1, 20), 1500);
+//        addCalories("ladyinred", new Date(119, 1, 21), 910);
+//        addCalories("ladyinred", new Date(119, 1, 22), 1400);
+//        addCalories("ladyinred", new Date(119, 1, 23), 1200);
+//        addCalories("ladyinred", new Date(119, 1, 24), 1330);
+//        addCalories("ladyinred", new Date(119, 1, 25), 1060);
+//        addCalories("ladyinred", new Date(119, 1, 26), 1333);
+
+        updateCalories("rodney", 10);
+
+
     }
+
 }
