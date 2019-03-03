@@ -32,14 +32,14 @@ public class HomeController implements Initializable {
 
         welcome.setText("Welcome, " + Launch.getCurrentUser().getFirstName());
 
-        /*int remaining = Launch.getCurrentUser().getGoals().get(0).getDaysRemaining();
+        int remaining = Launch.getCurrentUser().getGoals().get(0).getDaysRemaining();
         double percentage = 1;
         if (remaining != 0) {
             percentage -= remaining / Launch.getCurrentUser().getGoals().get(0).getStartDays();
         }
 
         dayProgress.setProgress(percentage);
-        daysLeft.setText(String.valueOf(Launch.getCurrentUser().getGoals().get(0).getDaysRemaining()));*/
+        daysLeft.setText(String.valueOf(Launch.getCurrentUser().getGoals().get(0).getDaysRemaining()));
     }
 
     public void minimise(MouseEvent mouseEvent) {

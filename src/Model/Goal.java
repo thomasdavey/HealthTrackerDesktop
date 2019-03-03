@@ -74,9 +74,11 @@ public class Goal {
         this.targetWeightLoss = targetWeightLoss;
     }
 
-    public Date getTargetDate() {
+    public java.sql.Date getTargetDate() {
+        java.sql.Date date = new java.sql.Date
+                (this.targetDate.getYear(),this.targetDate.getMonth(),this.targetDate.getDate());
 
-        return targetDate;
+        return date;
     }
 
     public int getDaysRemaining() {
@@ -92,10 +94,6 @@ public class Goal {
     public void setStartDays(int i){
         startDays = i;
     }
-
-    public void setTargetDate(Date targetDate) {
-
-        this.targetDate = targetDate; }
 
     public void checkGoal(){
         if (this.targetDate.equals(today) || this.targetDate.before(today)){

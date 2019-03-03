@@ -78,7 +78,9 @@ public class LoadUser extends DBAccess {
         // Goals
         rs = st.executeQuery("SELECT * FROM GOALS WHERE ID ='" + this.userName + "'");
         while (rs.next()) {
-            Goal g = new Goal(rs.getDouble(2), rs.getDate(3));
+            Date targetDate = rs.getDate(3);
+            java.util.Date date = new java.util.Date(targetDate.getYear(),targetDate.getMonth(),targetDate.getDate());
+            Goal g = new Goal(rs.getDouble(2), date);
             g.setID(rs.getString(1));
             g.setCompleted(rs.getBoolean((4)));
             g.setActive(rs.getBoolean(5));

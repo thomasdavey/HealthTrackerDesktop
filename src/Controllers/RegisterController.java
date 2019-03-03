@@ -222,6 +222,7 @@ public class RegisterController implements Initializable {
             } else {
                 Goal startGoal = new Goal(weightLoss, date);
                 newUser.addGoal(startGoal);
+                DBAdd.addGoal(newUser.getUserName(), startGoal);
             }
         }
 
