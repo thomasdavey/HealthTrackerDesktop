@@ -115,6 +115,7 @@ public class Goal {
         System.out.println("Weight loss progress: " + numFormat.format(myGoal.getWeightLossProgress()) + "kg" +
                 "\nPercentage of goal completed: " + numFormat.format(myGoal.getPercentLost()) + "%");
 
+
     }
 
 }

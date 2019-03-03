@@ -93,7 +93,8 @@ public class User extends Profile {
     @Override
     public String toString() {
         String s = super.toString() + "\n" + "Age: " + age + "\n" +
-                "Height: " + height + " - Weight: " + weight + " - BMI: " + bmi;
+                "Height: " + height + " - Weight: " + weight + " - BMI: "
+                + bmi +" - Sex: "+ sex + " - Activity Level: "+activityLevel;
         return s;
     }
 }
