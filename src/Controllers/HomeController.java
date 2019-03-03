@@ -18,28 +18,28 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
 
     public HBox topBar;
-    public ProgressIndicator progress;
-    public Label progressString;
     public Label currentDate;
     public Label welcome;
-
-    private SimpleDateFormat date = new SimpleDateFormat("EEEEE, dd MMMMM yyyy");
-
+    public ProgressIndicator dayProgress;
+    public Label daysLeft;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Launch.makeStageDraggable(topBar);
-        progress.setProgress(0.5);
+
+        SimpleDateFormat date = new SimpleDateFormat("EEEEE, dd MMMMM yyyy");
+        currentDate.setText(date.format(new Date()));
 
         welcome.setText("Welcome, " + Launch.getCurrentUser().getFirstName());
 
-        if (progress.getProgress() == 1) {
-            progressString.setText("Done");
-        } else {
-            progressString.setText((int) (progress.getProgress() * 100) + "%");
+        /*int remaining = Launch.getCurrentUser().getGoals().get(0).getDaysRemaining();
+        double percentage = 1;
+        if (remaining != 0) {
+            percentage -= remaining / Launch.getCurrentUser().getGoals().get(0).getStartDays();
         }
 
-        currentDate.setText(date.format(new Date()));
+        dayProgress.setProgress(percentage);
+        daysLeft.setText(String.valueOf(Launch.getCurrentUser().getGoals().get(0).getDaysRemaining()));*/
     }
 
     public void minimise(MouseEvent mouseEvent) {

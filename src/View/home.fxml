@@ -169,9 +169,9 @@
                      <children>
                         <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <ProgressIndicator fx:id="progress" prefHeight="200.0" prefWidth="200.0" progress="0.82" />
+                              <ProgressIndicator fx:id="calorieProgress" prefHeight="200.0" prefWidth="200.0" progress="0.82" />
                               <Circle fill="WHITE" layoutX="100.0" layoutY="91.0" radius="64.0" stroke="WHITE" strokeType="INSIDE" />
-                              <Label fx:id="progressString" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="150.0" prefWidth="150.0" text="0%" textFill="#00000080">
+                              <Label fx:id="caloriesLeft" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="150.0" prefWidth="150.0" text="0%" textFill="#00000080">
                                  <font>
                                     <Font name="PingFang HK Ultralight" size="36.0" />
                                  </font>
@@ -185,9 +185,9 @@
                         </Pane>
                         <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <ProgressIndicator fx:id="progress1" prefHeight="200.0" prefWidth="200.0" progress="0.82" />
+                              <ProgressIndicator fx:id="dayProgress" prefHeight="200.0" prefWidth="200.0" progress="0.82" />
                               <Circle fill="WHITE" layoutX="100.0" layoutY="91.0" radius="64.0" stroke="WHITE" strokeType="INSIDE" />
-                              <Label fx:id="progressString1" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="150.0" prefWidth="150.0" text="0%" textFill="#00000080">
+                              <Label fx:id="daysLeft" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="150.0" prefWidth="150.0" text="0%" textFill="#00000080">
                                  <font>
                                     <Font name="PingFang HK Ultralight" size="36.0" />
                                  </font>
@@ -201,9 +201,9 @@
                         </Pane>
                         <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <ProgressIndicator fx:id="progress2" prefHeight="200.0" prefWidth="200.0" progress="0.82" />
+                              <ProgressIndicator fx:id="goalProgress" prefHeight="200.0" prefWidth="200.0" progress="0.82" />
                               <Circle fill="WHITE" layoutX="100.0" layoutY="91.0" radius="64.0" stroke="WHITE" strokeType="INSIDE" />
-                              <Label fx:id="progressString2" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="150.0" prefWidth="150.0" text="0%" textFill="#00000080">
+                              <Label fx:id="goalLeft" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="150.0" prefWidth="150.0" text="0%" textFill="#00000080">
                                  <font>
                                     <Font name="PingFang HK Ultralight" size="36.0" />
                                  </font>

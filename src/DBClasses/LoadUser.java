@@ -85,20 +85,15 @@ public class LoadUser extends DBAccess {
         closeConnection();
     }
 
-    public static int getCaloriesByDate(String u, Date d){
+    public static int getCaloriesByDate(String u, Date d) throws SQLException {
         ResultSet rs = null;
         int kcals = 0;
         getConnection();
 
-        try {
-            rs = st.executeQuery("SELECT KCALS FROM CALORIECOUNTS WHERE USERNAME = '"
-                    +u+"' AND DATE = '"+d+"'");
-            rs.next();
-            kcals = rs.getInt(1);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        rs = st.executeQuery("SELECT KCALS FROM CALORIECOUNTS WHERE USERNAME = '"
+                +u+"' AND DATE = '"+d+"'");
+        rs.next();
+        kcals = rs.getInt(1);
 
         closeConnection();
 
