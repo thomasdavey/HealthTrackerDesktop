@@ -36,7 +36,7 @@ public final class DBRemoval extends DBAccess {
         closeConnection();
     }
 
-    public static void removeGoal(User u, Goal g){
+    /*public static void removeGoal(User u, Goal g){
         getConnection();
         try {
             st.executeUpdate("DELETE FROM GOALS WHERE USERNAME ='"
@@ -46,7 +46,7 @@ public final class DBRemoval extends DBAccess {
             e.printStackTrace();
         }
         closeConnection();
-    }
+    }*/
 
     public static void removeAllGoals(User u){
         getConnection();

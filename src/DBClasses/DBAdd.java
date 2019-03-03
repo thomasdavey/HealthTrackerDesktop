@@ -38,7 +38,7 @@ public final class DBAdd extends DBAccess{
         closeConnection();
     }
 
-    public static void addGoal(Goal g){
+    /*public static void addGoal(Goal g){
         getConnection();
         try {
             st.executeUpdate("INSERT INTO GOALS VALUES ('"+g.getUser()+"', '"
@@ -47,7 +47,7 @@ public final class DBAdd extends DBAccess{
             e.printStackTrace();
         }
         closeConnection();
-    }
+    }*/
 
     public static void addCalories(String u, Date d, int c){
         getConnection();
