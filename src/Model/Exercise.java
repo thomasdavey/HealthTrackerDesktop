@@ -3,7 +3,7 @@ package Model;
 public class Exercise {
 
     private String name;
-    private enum Type {
+    public enum Type {
         STRENGTH,
         CARDIO
     }
