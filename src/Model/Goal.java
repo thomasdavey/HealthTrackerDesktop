@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Goal {
 
+    private String id; // can be username for solo goal or random group id for group goal
     private double targetWeightLoss;
     private Date targetDate;
     private boolean completed;
@@ -41,6 +42,10 @@ public class Goal {
     public boolean isCompleted() {
 
         return completed;
+    }
+
+    public boolean isActive(){
+        return active;
     }
 
     public void setCompleted(boolean completed) {
