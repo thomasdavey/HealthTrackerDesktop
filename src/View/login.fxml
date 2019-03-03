@@ -50,7 +50,7 @@
             </Label>
          </children>
       </HBox>
-      <Button fx:id="button" layoutX="175.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#login" prefHeight="30.0" prefWidth="250.0" styleClass="confirmButton" text="Sign In" />
+      <Button fx:id="button" layoutX="175.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#login" prefHeight="30.0" prefWidth="250.0" styleClass="loginButton" text="Sign In" />
       <Label layoutX="251.0" layoutY="363.0" onMouseClicked="#register" style="-fx-underline: true;" text="Not Registered?" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />

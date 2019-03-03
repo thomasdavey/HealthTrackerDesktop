@@ -5,10 +5,15 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: white;" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GoalsController">
@@ -140,21 +145,146 @@
                </children>
             </HBox>
             <VBox layoutY="30.0" prefHeight="620.0" prefWidth="775.0">
-               <padding>
-                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-               </padding>
                <children>
-                  <LineChart prefHeight="300.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </LineChart>
+                  <HBox prefHeight="100.0" prefWidth="775.0" style="-fx-border-color: rgba(0,0,0,0.1); -fx-border-width: 0px 0px 1px 0px;">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="305.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Current Weight: 0kg">
+                                       <font>
+                                          <Font name="PingFang HK Thin" size="24.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Target Weight: 0kg">
+                                       <font>
+                                          <Font name="PingFang HK Thin" size="24.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                              </HBox>
+                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0">
+                                 <children>
+                                    <ProgressIndicator fx:id="progress" prefHeight="150.0" prefWidth="150.0" progress="0.68" />
+                                    <Circle fill="WHITE" layoutX="75.0" layoutY="66.0" radius="46.0" stroke="WHITE" strokeType="INSIDE" />
+                                    <Label fx:id="progressString" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="100.0" prefWidth="100.0" text="32" textFill="#00000080">
+                                       <font>
+                                          <Font name="PingFang HK Ultralight" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutY="140.0" prefWidth="150.0" text="Days Until Goal" textAlignment="CENTER" textFill="#000000cc">
+                                       <font>
+                                          <Font name="PingFang HK Thin" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="30.0" top="10.0" />
+                                 </VBox.margin>
+                              </Pane>
+                           </children>
+                        </VBox>
+                        <HBox nodeOrientation="LEFT_TO_RIGHT">
+                           <HBox.margin>
+                              <Insets bottom="15.0" right="30.0" top="30.0" />
+                           </HBox.margin>
+                           <children>
+                              <LineChart fx:id="chart" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="440.0">
+                                <xAxis>
+                                  <CategoryAxis endMargin="0.0" label="Last 7 Days" side="BOTTOM" startMargin="0.0" tickLabelFill="#818181">
+                                       <tickLabelFont>
+                                          <Font name="PingFang HK Regular" size="10.0" />
+                                       </tickLabelFont>
+                                    </CategoryAxis>
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis fx:id="numberAxis" label="Calorie Intake" side="LEFT" tickLabelFill="#818181">
+                                       <tickLabelFont>
+                                          <Font name="PingFang HK Regular" size="10.0" />
+                                       </tickLabelFont>
+                                    </NumberAxis>
+                                </yAxis>
+                              </LineChart>
+                           </children>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="245.0" prefWidth="200.0" style="-fx-background-color: rgba(248,160,50,0.1);">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="775.0">
+                           <padding>
+                              <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
+                           </padding>
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="705.0" style="-fx-background-color: white; -fx-border-color: rgba(0,0,0,0.1);">
+                                 <children>
+                                    <VBox prefHeight="200.0" prefWidth="235.0" style="-fx-border-color: rgba(0,0,0,0.1); -fx-border-width: 0px 1px 0px 0px;">
+                                       <children>
+                                          <Label prefWidth="400.0" style="-fx-border-color: rgba(0,0,0,0.1); -fx-border-width: 0px 0px 1px 0px;" text="Current Weight Goal" textFill="#818181">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                             <padding>
+                                                <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                                             </padding>
+                                             <font>
+                                                <Font name="PingFang HK Light" size="13.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="235.0" style="-fx-border-color: rgba(0,0,0,0.1); -fx-border-width: 0px 1px 0px 0px;">
+                                       <children>
+                                          <Label prefWidth="400.0" style="-fx-border-color: rgba(0,0,0,0.1); -fx-border-width: 0px 0px 1px 0px;" text="Current Exercise Goal" textFill="#818181">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                             <padding>
+                                                <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                                             </padding>
+                                             <font>
+                                                <Font name="PingFang HK Light" size="13.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="235.0" spacing="10.0">
+                                       <children>
+                                          <Button minHeight="50.0" mnemonicParsing="false" prefWidth="185.0" style="-fx-background-radius: 0px; -fx-background-color: #F8A032;" text="Update Weight Goal" textFill="WHITE">
+                                             <font>
+                                                <Font name="PingFang HK Regular" size="13.0" />
+                                             </font>
+                                          </Button>
+                                          <Button minHeight="50.0" mnemonicParsing="false" prefWidth="185.0" style="-fx-background-radius: 0px; -fx-background-color: #8BC1E7;" text="Update Exercise Goal" textFill="WHITE">
+                                             <font>
+                                                <Font name="PingFang HK Regular" size="13.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                     </children></HBox>
                </children>
             </VBox>
          </children>
       </AnchorPane>
+      <Line fx:id="line" endX="126.0" layoutX="829.0" layoutY="326.0" opacity="0.0" startX="-221.0" stroke="#ff9d00" strokeWidth="2.0" style="-fx-fill: #F8A032;" />
    </children>
 </AnchorPane>

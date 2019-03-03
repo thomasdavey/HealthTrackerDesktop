@@ -9,6 +9,15 @@ public class Food {
     private int fat;
     private int sugar;
 
+    public Food(String name, int kcals, int protein, int carbs, int fat, int sugar){
+        this.name = name;
+        this.kcals = kcals;
+        this.protein = protein;
+        this.carbs = carbs;
+        this.fat = fat;
+        this.sugar = sugar;
+    }
+
     public String getName() {
         return name;
     }

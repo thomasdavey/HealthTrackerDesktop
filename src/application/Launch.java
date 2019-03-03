@@ -11,18 +11,17 @@ import javafx.stage.StageStyle;
 public class Launch extends Application {
 
     public static Stage stage = null;
+    public static Stage primary = null;
 
     private static double xOffSet = 0;
     private static double yOffSet = 0;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        stage = primaryStage;
+        primary = primaryStage;
 
         Parent root = FXMLLoader.load(getClass().getResource("/View/login.fxml"));
-        primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        newWindow(root, primary);
     }
 
     public static void makeStageDraggable(HBox topBar) {
@@ -34,6 +33,13 @@ public class Launch extends Application {
             stage.setX(event.getScreenX() - xOffSet);
             stage.setY(event.getScreenY() - yOffSet);
         });
+    }
+
+    public static void newWindow(Parent r, Stage s) {
+        stage = s;
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(r));
+        stage.show();
     }
 
     public static void main(String[] args) {

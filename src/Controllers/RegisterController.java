@@ -1,25 +1,66 @@
 package Controllers;
 
+import DBClasses.DBAdd;
+import Model.User;
 import application.Launch;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 public class RegisterController implements Initializable {
 
-    public HBox topBar;
-    public ComboBox<String> activityLevels;
+    private User newUser;
+
+    public TextField firstName;
+    public TextField lastName;
+    public DatePicker dob;
+    public TextField userName;
+    public TextField email;
+    public PasswordField password;
+
     public ComboBox<String> sex;
+    public TextField height;
+    public TextField weight;
+    public ComboBox<String> activityLevel;
+    public TextField targetWeight;
+    public DatePicker targetDate;
+
+    public HBox topBar;
+    public Label sexPrompt;
+    public Label activityPrompt;
+    public Label validationText;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Launch.makeStageDraggable(topBar);
-        setActivityLevels();
-        setSex();
+
+        dob.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+            super.updateItem(date, empty);
+            if (date.isAfter(LocalDate.now())) {
+                this.setDisable(true);
+            }
+            }
+        });
+
+        targetDate.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+            super.updateItem(date, empty);
+            if (date.isBefore(LocalDate.now())) {
+                this.setDisable(true);
+            }
+            }
+        });
     }
 
     public void minimise(MouseEvent mouseEvent) {
@@ -27,18 +68,139 @@ public class RegisterController implements Initializable {
     }
 
     public void close(MouseEvent mouseEvent) {
-        System.exit(0);
+        Launch.stage.close();
+        Launch.stage = Launch.primary;
     }
 
-    private void setActivityLevels() {
-        activityLevels.getItems().add("Less than 2 hours per week");
-        activityLevels.getItems().add("2-5 hours per week");
-        activityLevels.getItems().add("6-10 hours per week");
-        activityLevels.getItems().add("More than 10 hours per week");
+    public void setActivityLevel(MouseEvent mouseEvent) {
+        activityLevel.getItems().clear();
+        activityLevel.getItems().add("Less than 2 hours per week");
+        activityLevel.getItems().add("2-5 hours per week");
+        activityLevel.getItems().add("6-10 hours per week");
+        activityLevel.getItems().add("More than 10 hours per week");
+        activityPrompt.setStyle("-fx-text-fill: transparent");
     }
 
-    private void setSex() {
+    public void setSex(MouseEvent mouseEvent) {
+        sex.getItems().clear();
         sex.getItems().add("Male");
         sex.getItems().add("Female");
+        sexPrompt.setStyle("-fx-text-fill: transparent");
+    }
+
+    private Boolean validate() {
+        if (userName.getText().equals("")) {
+            validationText.setText("Please enter a username");
+            return false;
+        } else {
+            newUser = new User(userName.getText());
+        }
+
+        if (firstName.getText().equals("")) {
+            validationText.setText("Please enter your first name");
+            return false;
+        } else {
+            newUser.setFirstName(firstName.getText());
+        }
+
+        if (lastName.getText().equals("")) {
+            validationText.setText("Please enter your last name");
+            return false;
+        } else {
+            newUser.setLastName(lastName.getText());
+        }
+
+        if (dob.getValue() == null) {
+            validationText.setText("Please select your date of birth");
+            return false;
+        } else {
+            newUser.setDob(dob.getValue());
+        }
+
+        if (email.getText().equals("")) {
+            validationText.setText("Please enter an email address");
+            return false;
+        } else {
+            newUser.setEmail(email.getText());
+        }
+
+        if (password.getText().equals("")) {
+            validationText.setText("Please enter a password");
+            return false;
+        } else {
+            newUser.setPassword(password.getText());
+        }
+
+        if (sex.getSelectionModel().isEmpty()) {
+            validationText.setText("Please select your sex");
+            return false;
+        } else {
+            if (sex.getSelectionModel().isSelected(0)) {
+                newUser.setSex(0);
+            } else {
+                newUser.setSex(1);
+            }
+        }
+
+        if (height.getText().equals("")) {
+            validationText.setText("Please enter your height");
+            return false;
+        } else {
+            try {
+                newUser.setHeight(Integer.parseInt(height.getText()));
+            } catch (Exception e) {
+                validationText.setText("Invalid height input");
+                return false;
+            }
+        }
+
+        if (weight.getText().equals("")) {
+            validationText.setText("Please enter your weight");
+            return false;
+        } else {
+            try {
+                newUser.setWeight(Double.parseDouble(weight.getText()));
+            } catch (Exception badDouble) {
+                try {
+                    newUser.setWeight(Integer.parseInt(weight.getText()));
+                } catch (Exception badInt) {
+                    validationText.setText("Invalid weight input");
+                    return false;
+                }
+            }
+        }
+
+        if (activityLevel.getSelectionModel().isEmpty()) {
+            validationText.setText("Please select your level of activity");
+            return false;
+        } else {
+            if (activityLevel.getSelectionModel().isSelected(0)) {
+                newUser.setActivityLevel(1.2);
+            } else if (activityLevel.getSelectionModel().isSelected(1)) {
+                newUser.setActivityLevel(1.375);
+            } else if (activityLevel.getSelectionModel().isSelected(2)) {
+                newUser.setActivityLevel(1.55);
+            } else if (activityLevel.getSelectionModel().isSelected(3)) {
+                newUser.setActivityLevel(1.725);
+            } else {
+                newUser.setActivityLevel(1.9);
+            }
+        }
+
+        return true;
+    }
+
+    public void registerSubmit(MouseEvent mouseEvent) {
+        if (validate()) {
+            try {
+                DBAdd.addUser(newUser);
+                validationText.setText("ACCOUNT CREATED SUCCESSFULLY");
+                TimeUnit.MILLISECONDS.sleep(300);
+                Launch.stage.close();
+                Launch.stage = Launch.primary;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
