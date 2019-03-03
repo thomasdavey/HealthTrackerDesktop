@@ -18,7 +18,7 @@ public class LoadUser extends DBAccess {
     private double weight, activityLevel;
     private ArrayList<Goal> goals;
 
-    public LoadUser(String un) {
+    public LoadUser(String un) throws SQLException {
         goals = new ArrayList<>();
         populateData(un);
 
@@ -46,7 +46,7 @@ public class LoadUser extends DBAccess {
         return u;
     }
 
-    private void populateData(String userName) {
+    private void populateData(String userName) throws SQLException {
 
         this.userName = userName;
 
@@ -55,40 +55,34 @@ public class LoadUser extends DBAccess {
 
         // Profile Data
         ResultSet rs = null;
-        try {
-            rs = st.executeQuery("SELECT * FROM PROFILE WHERE USERNAME ='" + this.userName + "'");
 
-            rs.next();
-            this.password = rs.getString(2);
-            this.firstName = rs.getString(3);
-            this.lastName = rs.getString(4);
-            this.email = rs.getString(5);
-            this.active = rs.getBoolean(6);
+        rs = st.executeQuery("SELECT * FROM PROFILE WHERE USERNAME ='" + this.userName + "'");
 
-            // User Data
-            rs = st.executeQuery("SELECT * FROM USER WHERE USERNAME ='" + this.userName + "'");
-            rs.next();
-            this.height = rs.getInt(2);
-            this.weight = rs.getDouble(3);
-            this.bmi = rs.getInt(4);
-            this.age = rs.getInt(5);
-            this.sex = rs.getInt(6);
-            this.activityLevel = rs.getDouble(7);
+        rs.next();
+        this.password = rs.getString(2);
+        this.firstName = rs.getString(3);
+        this.lastName = rs.getString(4);
+        this.email = rs.getString(5);
+        this.active = rs.getBoolean(6);
 
-            // Goals
-            rs = st.executeQuery("SELECT * FROM GOALS WHERE USERNAME ='" + this.userName + "'");
-            while (rs.next()) {
-                //Goal g = new Goal(this.userName, rs.getString(2), rs.getBoolean(3), rs.getDate(4));
-                //goals.add(g);
-            }
+        // User Data
+        rs = st.executeQuery("SELECT * FROM USER WHERE USERNAME ='" + this.userName + "'");
+        rs.next();
+        this.height = rs.getInt(2);
+        this.weight = rs.getDouble(3);
+        this.bmi = rs.getInt(4);
+        this.age = rs.getInt(5);
+        this.sex = rs.getInt(6);
+        this.activityLevel = rs.getDouble(7);
 
-            closeConnection();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        // Goals
+        rs = st.executeQuery("SELECT * FROM GOALS WHERE USERNAME ='" + this.userName + "'");
+        while (rs.next()) {
+            //Goal g = new Goal(this.userName, rs.getString(2), rs.getBoolean(3), rs.getDate(4));
+            //goals.add(g);
         }
 
-
+        closeConnection();
     }
 
     public static int getCaloriesByDate(String u, Date d){
@@ -113,13 +107,13 @@ public class LoadUser extends DBAccess {
 
     public static void main(String[] args) {
 
-        User user = new LoadUser("imacpro").getUser();
-        System.out.println(user.getUserName());
-        System.out.println(user.toString());
-        System.out.println(user.getGoals());
+        //User user = new LoadUser("imacpro").getUser();
+        //System.out.println(user.getUserName());
+        //System.out.println(user.toString());
+        //System.out.println(user.getGoals());
 
-        int rodneyCals = getCaloriesByDate("rodney", new Date(119, 1, 23));
-        System.out.println(rodneyCals);
+        //int rodneyCals = getCaloriesByDate("rodney", new Date(119, 1, 23));
+        //System.out.println(rodneyCals);
 
     }
 

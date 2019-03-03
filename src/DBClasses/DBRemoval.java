@@ -60,8 +60,8 @@ public final class DBRemoval extends DBAccess {
     }
 
     public static void main(String[] args) {
-        User user = new LoadUser("pandapaul").getUser();
-        DBRemoval.removeUser(user);
+        //User user = new LoadUser("pandapaul").getUser();
+        //DBRemoval.removeUser(user);
     }
 
 }

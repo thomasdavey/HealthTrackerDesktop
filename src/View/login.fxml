@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #fdc830, #f37335);" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <children>
@@ -32,7 +33,7 @@
       </Label>
       <HBox layoutX="176.0" layoutY="177.0" prefHeight="30.0" prefWidth="250.0" style="-fx-border-color: white; -fx-border-radius: 2px;">
          <children>
-            <TextField prefHeight="30.0" prefWidth="220.0" promptText="Username" style="-fx-prompt-text-fill: white; -fx-text-fill: white; -fx-background-color: transparent;" />
+            <TextField fx:id="userName" prefHeight="30.0" prefWidth="220.0" promptText="Username" style="-fx-prompt-text-fill: white; -fx-text-fill: white; -fx-background-color: transparent;" />
             <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="USER" size="15" />
@@ -42,7 +43,7 @@
       </HBox>
       <HBox layoutX="176.0" layoutY="219.0" prefHeight="30.0" prefWidth="250.0" style="-fx-border-color: white; -fx-border-radius: 2px;">
          <children>
-            <PasswordField prefHeight="30.0" prefWidth="220.0" promptText="Password" style="-fx-prompt-text-fill: white; -fx-text-fill: white; -fx-background-color: transparent;" />
+            <PasswordField fx:id="password" prefHeight="30.0" prefWidth="220.0" promptText="Password" style="-fx-prompt-text-fill: white; -fx-text-fill: white; -fx-background-color: transparent;" />
             <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="LOCK" size="15" />
@@ -55,6 +56,11 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+      </Label>
+      <Label fx:id="validationText" alignment="CENTER" contentDisplay="CENTER" layoutY="316.0" prefWidth="600.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="10.0" />
+         </font>
       </Label>
    </children>
 </AnchorPane>

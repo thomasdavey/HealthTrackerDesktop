@@ -1,6 +1,8 @@
 package Controllers;
 
 import DBClasses.DBAdd;
+import Model.Calculator;
+import Model.Goal;
 import Model.User;
 import application.Launch;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,8 @@ import javafx.scene.layout.HBox;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
@@ -44,6 +48,7 @@ public class RegisterController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Launch.makeStageDraggable(topBar);
 
+        dob.setShowWeekNumbers(false);
         dob.setDayCellFactory(picker -> new DateCell() {
             public void updateItem(LocalDate date, boolean empty) {
             super.updateItem(date, empty);
@@ -53,6 +58,7 @@ public class RegisterController implements Initializable {
             }
         });
 
+        targetDate.setShowWeekNumbers(false);
         targetDate.setDayCellFactory(picker -> new DateCell() {
             public void updateItem(LocalDate date, boolean empty) {
             super.updateItem(date, empty);
@@ -184,6 +190,38 @@ public class RegisterController implements Initializable {
                 newUser.setActivityLevel(1.725);
             } else {
                 newUser.setActivityLevel(1.9);
+            }
+        }
+        newUser.setBmi((int)Calculator.bmi(newUser.getWeight(), newUser.getHeight()));
+
+        if (targetWeight.getText().equals("")) {
+            validationText.setText("Please enter your target weight");
+            return false;
+        } else {
+            try {
+                Double.parseDouble(targetWeight.getText());
+            } catch (Exception badDouble) {
+                try {
+                    Integer.parseInt(targetWeight.getText());
+                } catch (Exception badInt) {
+                    validationText.setText("Invalid target weight input");
+                    return false;
+                }
+            }
+        }
+
+        if (targetDate.getValue() == null) {
+            validationText.setText("Please enter target date for your goal");
+            return false;
+        } else {
+            double weightLoss = Double.parseDouble(weight.getText()) - Double.parseDouble(targetWeight.getText());
+            Date date = Date.from(targetDate.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+            if (weightLoss < 0) {
+                validationText.setText("Please enter a target weight less than your current weight");
+                return false;
+            } else {
+                Goal startGoal = new Goal(weightLoss, date);
+                newUser.addGoal(startGoal);
             }
         }
 

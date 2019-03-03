@@ -1,5 +1,6 @@
 package application;
 
+import Model.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +10,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Launch extends Application {
+
+    private static User currentUser;
 
     public static Stage stage = null;
     public static Stage primary = null;
@@ -40,6 +43,14 @@ public class Launch extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(r));
         stage.show();
+    }
+
+    public static void setCurrentUser(User u) {
+        currentUser = u;
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
     }
 
     public static void main(String[] args) {

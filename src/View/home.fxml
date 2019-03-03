@@ -141,7 +141,7 @@
             </HBox>
             <VBox alignment="TOP_CENTER" layoutY="30.0" prefHeight="620.0" prefWidth="775.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="675.0" text="Welcome, Thomas!" textFill="#00000080">
+                  <Label fx:id="welcome" alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="675.0" text="Welcome, &lt;USER&gt;" textFill="#00000080">
                      <font>
                         <Font name="PingFang HK Ultralight" size="48.0" />
                      </font>

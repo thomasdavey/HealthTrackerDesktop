@@ -21,6 +21,7 @@ public class HomeController implements Initializable {
     public ProgressIndicator progress;
     public Label progressString;
     public Label currentDate;
+    public Label welcome;
 
     private SimpleDateFormat date = new SimpleDateFormat("EEEEE, dd MMMMM yyyy");
 
@@ -29,6 +30,8 @@ public class HomeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Launch.makeStageDraggable(topBar);
         progress.setProgress(0.5);
+
+        welcome.setText("Welcome, " + Launch.getCurrentUser().getFirstName());
 
         if (progress.getProgress() == 1) {
             progressString.setText("Done");
