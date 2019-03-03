@@ -19,7 +19,7 @@ public final class DBAdd extends DBAccess{
             st.executeUpdate("INSERT INTO PROFILE VALUES ('"+u.getUserName()+"', '"+u.getPassword()+"', '"
                     +u.getFirstName()+"', '"+u.getLastName()+"', '"+u.getEmail()+"', 1)");
             st.executeUpdate("INSERT INTO USER VALUES ('"+u.getUserName()+"', "+u.getHeight()+", "
-                    +u.getWeight()+", "+u.getBmi()+", "+u.getAge()+")");
+                    +u.getWeight()+", "+u.getBmi()+", "+u.getAge()+", "+u.getSex()+", "+u.getActivityLevel()+")");
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -14,7 +14,8 @@ public class LoadUser extends DBAccess {
     private String userName, password, firstName, lastName, email;
     private boolean active;
 
-    private int height, weight, bmi, age;
+    private int height, bmi, age, sex;
+    private double weight, activityLevel;
     private ArrayList<Goal> goals;
 
     public LoadUser(String un) {
@@ -32,6 +33,8 @@ public class LoadUser extends DBAccess {
         u.setWeight(weight);
         u.setBmi(bmi);
         u.setAge(age);
+        u.setSex(sex);
+        u.setActivityLevel(activityLevel);
 
         for (Goal g : goals) {
             u.addGoal(g);
@@ -66,9 +69,11 @@ public class LoadUser extends DBAccess {
             rs = st.executeQuery("SELECT * FROM USER WHERE USERNAME ='" + this.userName + "'");
             rs.next();
             this.height = rs.getInt(2);
-            this.weight = rs.getInt(3);
+            this.weight = rs.getDouble(3);
             this.bmi = rs.getInt(4);
             this.age = rs.getInt(5);
+            this.sex = rs.getInt(6);
+            this.activityLevel = rs.getDouble(7);
 
             // Goals
             rs = st.executeQuery("SELECT * FROM GOALS WHERE USERNAME ='" + this.userName + "'");
