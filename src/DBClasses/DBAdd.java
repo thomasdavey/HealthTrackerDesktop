@@ -111,7 +111,7 @@ public final class DBAdd extends DBAccess{
 //        addCalories("ladyinred", new Date(119, 1, 25), 1060);
 //        addCalories("ladyinred", new Date(119, 1, 26), 1333);
 
-        updateCalories("rodney", 10);
+
 
 
     }
