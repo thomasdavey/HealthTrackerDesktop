@@ -1,5 +1,6 @@
 package DBClasses;
 
+import Model.Exercise;
 import Model.Food;
 import Model.Goal;
 import Model.User;
@@ -72,6 +73,17 @@ public final class DBAdd extends DBAccess{
             e.printStackTrace();
         }
 
+        closeConnection();
+    }
+
+    public static void addExercise(Exercise ex){
+        getConnection();
+        try {
+            st.executeUpdate("INSERT INTO EXERCISE VALUES ('"+ex.getName()+"', '"
+                    +ex.getType().name()+"', "+ex.getCalsBurnedPer5Mins()+")");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         closeConnection();
     }
 
