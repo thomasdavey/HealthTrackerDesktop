@@ -1,13 +1,21 @@
 package Model;
 
-import java.util.Arrays;
-import java.util.Date;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.activation.*;
 
 public class Group {
 
     private User[] members;
     private Goal groupGoal;
     private String groupName;
+    ServerSocket socket;
 
     public Group(User[] members, Goal groupGoal, String groupName){
         this.members = members;
@@ -63,10 +71,43 @@ public class Group {
 
     }
 
-    public static void main(String args[]){
+    public void sendGroupDetails(User sender, User recipient){
+
+        String from = sender.getEmail();
+        String to = recipient.getEmail();
+        String host = "localhost";
+
+        Properties properties = System.getProperties();
+        properties.setProperty("mail.smtp.host", host);
+        Session session = Session.getDefaultInstance(properties);
+
+        try {
+            MimeMessage message = new MimeMessage(session);
+
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+            message.setSubject("Group Details");
+            message.setText("This is a message about a group");
+
+            Transport.send(message);
+            System.out.println("message has been sent");
+        }
+        catch (MessagingException mex){
+            mex.printStackTrace();
+        }
+
+    }
+
+    public void createHost() throws IOException {
+        socket = new ServerSocket(9090, 0, InetAddress.getByName(null));
+    }
+
+    public static void main(String args[]) throws IOException {
 
         User amy = new User("amyPryor");
         amy.setFirstName("Amy");
+        amy.setEmail("amy.a.p@hotmail.com");
 
         User tom = new User("tomDavey");
         tom.setFirstName("Tom");
@@ -82,6 +123,9 @@ public class Group {
         group.joinGroup(jamie);
         group.deleteMembership(jamie);
 
+        //SENDING EMAIL NOT WORKING YET
+        //group.createHost();
+        //group.sendGroupDetails(amy, amy);
     }
 
 }
