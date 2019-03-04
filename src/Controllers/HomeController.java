@@ -42,49 +42,56 @@ public class HomeController implements Initializable {
 
         welcome.setText("Welcome, " + Launch.getCurrentUser().getFirstName());
 
+        setCalorieProgress(calorieProgress, caloriesLeft);
+        setDaysLeft(dayProgress, daysLeft);
+        setGoalProgress(goalProgress, goalLeft);
+    }
 
-
-        int todayCalories = 0;
-        int allowedCalories;
-
+    public static void setCalorieProgress(ProgressIndicator p, Label l) {
         User current = Launch.getCurrentUser();
 
-        double metaRate = Calculator.metabolicRate(current.getWeight(),
-                current.getHeight(), current.getAge());
-        int extremity = Calculator.getWeightLossExtremity(current.getGoals().get(0));
-
-        allowedCalories = Calculator.targetCalories(metaRate, current.getActivityLevel(), extremity);
+        int todayCalories = 0;
+        int allowedCalories = current.getAllowedCalories();
 
         java.sql.Date today = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         try {
-            todayCalories = LoadUser.getCaloriesByDate(Launch.getCurrentUser().getUserName(), today);
+            todayCalories = LoadUser.getCaloriesByDate(current.getUserName(), today);
         } catch (SQLException e) {
-            DBAdd.addCalories(Launch.getCurrentUser().getUserName(), today, todayCalories);
+            DBAdd.addCalories(current.getUserName(), today, todayCalories, "Start");
         }
-        caloriesLeft.setText(String.valueOf(allowedCalories-todayCalories));
+
+        l.setText(String.valueOf(allowedCalories-todayCalories));
+
         double progress = 1;
-        if (todayCalories > allowedCalories) {
-            progress = (allowedCalories-todayCalories) / allowedCalories;
+        if ((allowedCalories-todayCalories) > 0) {
+            progress = (double)(allowedCalories-todayCalories) / allowedCalories;
         }
-        calorieProgress.setProgress(progress);
 
+        p.setProgress(progress);
+    }
 
+    public static void setDaysLeft(ProgressIndicator p, Label l) {
+        User current = Launch.getCurrentUser();
 
-        int remaining = Launch.getCurrentUser().getGoals().get(0).getDaysRemaining();
+        l.setText(String.valueOf(current.getGoals().get(0).getDaysRemaining()));
+
+        double remaining = current.getGoals().get(0).getDaysRemaining();
         double percentage = 1;
         if (remaining != 0) {
-            percentage -= remaining / Launch.getCurrentUser().getGoals().get(0).getStartDays();
+            percentage -= (1 - (remaining / current.getGoals().get(0).getStartDays()));
         }
-        dayProgress.setProgress(percentage);
-        daysLeft.setText(String.valueOf(Launch.getCurrentUser().getGoals().get(0).getDaysRemaining()));
+        p.setProgress(percentage);
+    }
+
+    public static void setGoalProgress(ProgressIndicator p, Label l) {
+        User current = Launch.getCurrentUser();
 
         double percentLost = 0;
         if (current.getGoals().get(0).getPercentLost() > 0) {
             percentLost = current.getGoals().get(0).getPercentLost();
         }
-        goalProgress.setProgress(percentLost/100);
-        goalLeft.setText((int)percentLost + "%");
-
+        l.setText((int)percentLost + "%");
+        p.setProgress(percentLost/100);
     }
 
     public void minimise(MouseEvent mouseEvent) {

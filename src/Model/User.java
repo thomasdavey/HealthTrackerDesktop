@@ -90,6 +90,13 @@ public class User extends Profile {
         return age;
     }
 
+    public int getAllowedCalories() {
+        double metaRate = Calculator.metabolicRate(getWeight(), getHeight(), getAge());
+        int extremity = Calculator.getWeightLossExtremity(getGoals().get(0));
+
+        return Calculator.targetCalories(metaRate, getActivityLevel(), extremity);
+    }
+
     @Override
     public String toString() {
         String s = super.toString() + "\n" + "Age: " + age + "\n" +

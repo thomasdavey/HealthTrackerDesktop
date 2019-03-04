@@ -216,7 +216,7 @@ public class RegisterController implements Initializable {
         } else {
             double weightLoss = Double.parseDouble(weight.getText()) - Double.parseDouble(targetWeight.getText());
             Date date = Date.from(targetDate.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-            Goal startGoal = new Goal(weightLoss, date);
+            Goal startGoal = new Goal(weightLoss, date, newUser.getWeight());
             if (weightLoss < 0) {
                 validationText.setText("Please enter a target weight less than your current weight");
                 return false;

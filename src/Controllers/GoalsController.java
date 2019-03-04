@@ -11,6 +11,8 @@ import javafx.scene.chart.Axis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Line;
@@ -32,11 +34,19 @@ public class GoalsController implements Initializable {
     public LineChart<String, Number> chart;
     public Line line;
     public NumberAxis numberAxis;
+    public Label dayLeft;
+    public ProgressIndicator dayProgress;
+    public Label targetWeight;
+    public Label currentWeight;
     private XYChart.Series<String, Number> series;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Launch.makeStageDraggable(topBar);
+        HomeController.setDaysLeft(dayProgress, dayLeft);
+        targetWeight.setText("Target Weight: " + (int)(Launch.getCurrentUser().getGoals().get(0).getStartWeight()-
+                Launch.getCurrentUser().getGoals().get(0).getTargetWeightLoss()) + "kg");
+        currentWeight.setText("Current Weight: " + (int)Launch.getCurrentUser().getWeight() + "kg");
         createChart();
     }
 

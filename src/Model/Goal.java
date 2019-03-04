@@ -13,6 +13,7 @@ public class Goal {
     private boolean completed;
     private boolean active;
     private int startDays;
+    private double startWeight;
 
     private double weightLossProgress;
     private double percentLost;
@@ -21,7 +22,7 @@ public class Goal {
 
     static DecimalFormat numFormat = new DecimalFormat("#.00");
 
-    public Goal(double targetWeightLoss, Date targetDate){
+    public Goal(double targetWeightLoss, Date targetDate, Double startWeight){
 
         //making sure the user cannot set the target date to today or the past
         if (targetDate.after(today)){
@@ -36,6 +37,7 @@ public class Goal {
         this.targetWeightLoss = targetWeightLoss;
         this.startDays = getDaysRemaining();
         this.completed = false;
+        this.startWeight = startWeight;
     }
 
     public String getID(){
@@ -137,15 +139,23 @@ public class Goal {
         return goalString;
     }
 
+    public void setStartWeight(double i) {
+        this.startWeight = i;
+    }
+
+    public double getStartWeight() {
+        return this.startWeight;
+    }
+
     public static void main(String args[]){
 
-        Date goalDate = new Date(2019, 8,3);
-        Goal myGoal = new Goal(-10, goalDate);
-        System.out.println(myGoal.toString());
-        myGoal.setWeightLossProgress(74.8,81.6);
-        myGoal.setPercentLost();
-        System.out.println("Weight loss progress: " + numFormat.format(myGoal.getWeightLossProgress()) + "kg" +
-                "\nPercentage of goal completed: " + numFormat.format(myGoal.getPercentLost()) + "%");
+        //Date goalDate = new Date(2019, 8,3);
+        //Goal myGoal = new Goal(-10, goalDate);
+        //System.out.println(myGoal.toString());
+        //myGoal.setWeightLossProgress(74.8,81.6);
+        //myGoal.setPercentLost();
+        //System.out.println("Weight loss progress: " + numFormat.format(myGoal.getWeightLossProgress()) + "kg" +
+        //        "\nPercentage of goal completed: " + numFormat.format(myGoal.getPercentLost()) + "%");
 
 
     }

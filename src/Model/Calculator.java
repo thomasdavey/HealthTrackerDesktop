@@ -169,23 +169,23 @@ public class Calculator {
         double kgPerWeek = (weightLoss/numWeeks);
 
         //
-        if (kgPerWeek > -4 && kgPerWeek < -2){
-            extremity = -3;
+        if (kgPerWeek > -3 && kgPerWeek < -2){
+            extremity = 3;
         }
         else if (kgPerWeek > -2 && kgPerWeek < -1){
-            extremity = -2;
-        }
-        else if (kgPerWeek > -1 && kgPerWeek <= 0){
-            extremity = -1;
-        }
-        else if (kgPerWeek > 0 && kgPerWeek < 1){
-            extremity = 1;
-        }
-        else if (kgPerWeek > 1 && kgPerWeek < 2){
             extremity = 2;
         }
-        else if (kgPerWeek > 2 && kgPerWeek < 4){
-            extremity = 3;
+        else if (kgPerWeek > -1 && kgPerWeek <= 0){
+            extremity = 1;
+        }
+        else if (kgPerWeek > 0 && kgPerWeek < 1){
+            extremity = -1;
+        }
+        else if (kgPerWeek > 1 && kgPerWeek < 2){
+            extremity = -2;
+        }
+        else if (kgPerWeek > 2 && kgPerWeek < 3){
+            extremity = -3;
         }
         else{
             System.out.println("Please set a different goal." +
@@ -234,7 +234,7 @@ public class Calculator {
 
 
         //testing extremity
-        Date goalDate = new Date(2019, 8,3);
+        /*Date goalDate = new Date(2019, 8,3);
         Goal myGoal = new Goal(-1, goalDate);
         myGoal.setStartDays(70);
         System.out.println("Extremity 1: " + getWeightLossExtremity(myGoal));
@@ -242,7 +242,7 @@ public class Calculator {
         Date goalDate2 = new Date(2019, 5, 3);
         Goal myGoal2 = new Goal(-5, goalDate2);
         myGoal2.setStartDays(20);
-        System.out.println("Extremity 2: " + getWeightLossExtremity(myGoal2));
+        System.out.println("Extremity 2: " + getWeightLossExtremity(myGoal2));*/
 
     }
 

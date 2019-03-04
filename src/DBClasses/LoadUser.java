@@ -78,10 +78,10 @@ public class LoadUser extends DBAccess {
 
         // Goals
         rs = st.executeQuery("SELECT * FROM GOALS WHERE ID ='" + this.userName + "'");
-        /*while (rs.next()) {
-            Calendar targetDate = rs.getDate(3);
+        while (rs.next()) {
+            Date targetDate = rs.getDate(3);
             java.util.Date date = new java.util.Date(targetDate.getYear(),targetDate.getMonth(),targetDate.getDate());
-            Goal g = new Goal(rs.getDouble(2), date);
+            Goal g = new Goal(rs.getDouble(2), date, rs.getDouble(9));
             g.setID(rs.getString(1));
             g.setCompleted(rs.getBoolean((4)));
             g.setActive(rs.getBoolean(5));
@@ -89,7 +89,7 @@ public class LoadUser extends DBAccess {
             //g.setWeightLossProgress();        This field requires current weight to calculate
             g.setPercentLost();
             goals.add(g);
-        }*/
+        }
 
         closeConnection();
     }
@@ -101,8 +101,9 @@ public class LoadUser extends DBAccess {
 
         rs = st.executeQuery("SELECT KCALS FROM CALORIECOUNTS WHERE USERNAME = '"
                 +u+"' AND DATE = '"+d+"'");
-        rs.next();
-        kcals = rs.getInt(1);
+        while (rs.next()) {
+            kcals += rs.getInt(1);
+        }
 
         closeConnection();
 

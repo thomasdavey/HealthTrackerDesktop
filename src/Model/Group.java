@@ -117,13 +117,13 @@ public class Group {
         User jamie = new User("jamieGreasley");
         jamie.setFirstName("Jamie");
 
-        Date goalDate = new Date(2019, 8,3);
+        /*Date goalDate = new Date(2019, 8,3);
         Goal groupGoal = new Goal(-10, goalDate);
         User[] mem = {amy, tom};
 
         Group group = new Group(mem, groupGoal, "group1");
         group.joinGroup(jamie);
-        group.deleteMembership(jamie);
+        group.deleteMembership(jamie);*/
 
         //SENDING EMAIL NOT WORKING YET
         //group.createHost();

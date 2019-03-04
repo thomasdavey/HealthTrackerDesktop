@@ -152,7 +152,7 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0">
                                  <children>
-                                    <Label text="Current Weight: 0kg">
+                                    <Label fx:id="currentWeight" prefWidth="250.0" text="Current Weight: 0kg">
                                        <font>
                                           <Font name="PingFang HK Thin" size="24.0" />
                                        </font>
@@ -164,7 +164,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0">
                                  <children>
-                                    <Label text="Target Weight: 0kg">
+                                    <Label fx:id="targetWeight" prefWidth="250.0" text="Target Weight: 0kg">
                                        <font>
                                           <Font name="PingFang HK Thin" size="24.0" />
                                        </font>
@@ -176,9 +176,9 @@
                               </HBox>
                               <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0">
                                  <children>
-                                    <ProgressIndicator fx:id="progress" prefHeight="150.0" prefWidth="150.0" progress="0.68" />
+                                    <ProgressIndicator fx:id="dayProgress" prefHeight="150.0" prefWidth="150.0" progress="0.68" />
                                     <Circle fill="WHITE" layoutX="75.0" layoutY="66.0" radius="46.0" stroke="WHITE" strokeType="INSIDE" />
-                                    <Label fx:id="progressString" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="100.0" prefWidth="100.0" text="32" textFill="#00000080">
+                                    <Label fx:id="dayLeft" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="100.0" prefWidth="100.0" text="32" textFill="#00000080">
                                        <font>
                                           <Font name="PingFang HK Ultralight" size="24.0" />
                                        </font>

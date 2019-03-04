@@ -45,17 +45,17 @@ public final class DBAdd extends DBAccess{
         try {
             st.executeUpdate("INSERT INTO GOALS VALUES ('"+id+"', " +g.getTargetWeightLoss()
                     +", '"+g.getTargetDate()+"', "+g.isCompleted()+", " +g.isActive()+", "+g.getStartDays()+
-                    ", "+g.getWeightLossProgress()+", "+g.getPercentLost()+")");
+                    ", "+g.getWeightLossProgress()+", "+g.getPercentLost()+", "+g.getStartWeight()+")");
         } catch (SQLException e) {
             e.printStackTrace();
         }
         closeConnection();
     }
 
-    public static void addCalories(String u, Date d, int c){
+    public static void addCalories(String u, Date d, int c, String m){
         getConnection();
         try {
-            st.executeUpdate("INSERT INTO CALORIECOUNTS VALUES ('"+u+"', '"+d+"', "+c+")");
+            st.executeUpdate("INSERT INTO CALORIECOUNTS VALUES ('"+u+"', '"+d+"', '"+c+"', '"+m+"')");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -88,9 +88,7 @@ public final class DBAdd extends DBAccess{
     }
 
     public static void main(String[] args) {
-
-
-
+        //System.out.println(new Date(119,2,3));
     }
 
 }
