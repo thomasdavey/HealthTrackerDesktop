@@ -6,6 +6,7 @@ import Model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class LoadUser extends DBAccess {
 
@@ -77,8 +78,8 @@ public class LoadUser extends DBAccess {
 
         // Goals
         rs = st.executeQuery("SELECT * FROM GOALS WHERE ID ='" + this.userName + "'");
-        while (rs.next()) {
-            Date targetDate = rs.getDate(3);
+        /*while (rs.next()) {
+            Calendar targetDate = rs.getDate(3);
             java.util.Date date = new java.util.Date(targetDate.getYear(),targetDate.getMonth(),targetDate.getDate());
             Goal g = new Goal(rs.getDouble(2), date);
             g.setID(rs.getString(1));
@@ -88,7 +89,7 @@ public class LoadUser extends DBAccess {
             //g.setWeightLossProgress();        This field requires current weight to calculate
             g.setPercentLost();
             goals.add(g);
-        }
+        }*/
 
         closeConnection();
     }

@@ -73,7 +73,7 @@ public class Group {
 
     }
 
-    public void sendGroupDetails(User sender, User recipient){
+    /*public void sendGroupDetails(User sender, User recipient){
 
         String from = sender.getEmail();
         String to = recipient.getEmail();
@@ -99,7 +99,7 @@ public class Group {
             mex.printStackTrace();
         }
 
-    }
+    }*/
 
     public void createHost() throws IOException {
         socket = new ServerSocket(9090, 0, InetAddress.getByName(null));

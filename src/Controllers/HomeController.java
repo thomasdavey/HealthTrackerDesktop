@@ -50,7 +50,7 @@ public class HomeController implements Initializable {
         User current = Launch.getCurrentUser();
 
         double metaRate = Calculator.metabolicRate(current.getWeight(),
-                current.getHeight(), current.getAge(), current.getSex());
+                current.getHeight(), current.getAge());
         int extremity = Calculator.getWeightLossExtremity(current.getGoals().get(0));
 
         allowedCalories = Calculator.targetCalories(metaRate, current.getActivityLevel(), extremity);

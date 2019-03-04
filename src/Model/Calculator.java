@@ -49,26 +49,19 @@ public class Calculator {
     //method to calculate basic metabolic rate
     //age should be in yearsexercise
     //basic metabolic rate is how many calories your body needs with absolutely no exercise
-    public static double metabolicRate(double weight, double height, int age, int sex){
+    public static double metabolicRate(double weight, double height, int age){
 
         double metabolicRate = 0;
 
-        if (sex == 0){
-            metabolicRate = (10*weight) + (6.25*height) - (5*age) + 5;
-        }
-        else if (sex == 1){
-            metabolicRate = (10*weight) + (6.25*height) - (5*age) - 161;
-        }
+        metabolicRate = (10*weight) + (6.25*height) - (5*age) - 161;
 
         return metabolicRate;
     }
 
     //ENERGY EXPENDITURE
-    //"Less than 2 hours per week" = 1.2
-    //"2-5 hours per week" = 1.375
-    //"5-10 hours per week" = 1.55
-    //"10-15 hours per week" = 1.725
-    //"More than 15 hours per week" = 1.9
+    //"Less than 5 hours per week" = 1.2
+    //"5-10 hours per week" = 1.375
+    //"More than 10 hours per week" = 1.55
 
     public static int dailyCals(double metabolicRate, double energyExpenditure){
         int dailyCals =(int) (metabolicRate*energyExpenditure);
@@ -165,14 +158,15 @@ public class Calculator {
         int extremity;
 
         double weightLoss = goal.getTargetWeightLoss();
-        Date targetDate = goal.getTargetDate();
-        Date today = Calendar.getInstance().getTime();
+        //Date targetDate = goal.getTargetDate();
+        //Date today = Calendar.getInstance().getTime();
 
-        long difference = targetDate.getTime() - today.getTime();
-        double daysBetween = (difference / (1000*60*60*24));
+        //long difference = targetDate.getTime() - today.getTime();
+        //double daysBetween = (difference / (1000*60*60*24));
+        double daysBetween = goal.getStartDays();
         double numWeeks = daysBetween/7;
 
-        double kgPerWeek = (int) (weightLoss/numWeeks);
+        double kgPerWeek = (weightLoss/numWeeks);
 
         //
         if (kgPerWeek > -4 && kgPerWeek < -2){
@@ -181,11 +175,8 @@ public class Calculator {
         else if (kgPerWeek > -2 && kgPerWeek < -1){
             extremity = -2;
         }
-        else if (kgPerWeek > -1 && kgPerWeek < 0){
+        else if (kgPerWeek > -1 && kgPerWeek <= 0){
             extremity = -1;
-        }
-        else if (kgPerWeek == 0){
-            extremity = 0;
         }
         else if (kgPerWeek > 0 && kgPerWeek < 1){
             extremity = 1;
@@ -214,18 +205,10 @@ public class Calculator {
         //testing the methods with my measurements
         System.out.println("bmi: " + numFormat.format(bmi(74.8, 170)));
         System.out.println("ideal body weight: " + numFormat.format(idealBodyWeight(170, 'F')));
-        double bmr = metabolicRate(74.8, 170, 19, 'F');
+        double bmr = metabolicRate(74.8, 170, 19);
         System.out.println("bmr: " + numFormat.format(bmr));
         int cals = targetCalories(bmr, 1.2, -2);
         System.out.println("target calories: " + cals);
-
-        //testing methods with toms measurements
-        /*System.out.println("bmi: " + numFormat.format(bmi(77.4, 182)));
-        System.out.println("ideal body weight: " + numFormat.format(idealBodyWeight(182, 'M')));
-        double bmr2 = metabolicRate(77.4, 182, 20, 'M');
-        System.out.println("bmr: " + numFormat.format(bmr2));
-        System.out.println("target calories: " + targetCalories(bmr2, 3));
-        */
 
         System.out.println("Breakfast: " + targetBreakfast(cals));
         System.out.println("Lunch: " + targetLunch(cals));
@@ -240,6 +223,27 @@ public class Calculator {
         System.out.println("Target Fat: " + targetFat(dailyCals(bmr, 1.5)) + "g");
         System.out.println("Target Carbs: " + targetCarbs(dailyCals(bmr, 1.5),
                 targetProtein(74.8), targetFat(dailyCals(bmr, 1.5))) + "g");
+
+
+        //testing methods with toms measurements
+        System.out.println("bmi: " + numFormat.format(bmi(77.4, 182)));
+        System.out.println("ideal body weight: " + numFormat.format(idealBodyWeight(182, 'M')));
+        double bmr2 = metabolicRate(77.4, 182, 20);
+        System.out.println("bmr: " + numFormat.format(bmr2));
+        System.out.println("target calories: " + targetCalories(bmr2, 1.55, -3));
+
+
+        //testing extremity
+        Date goalDate = new Date(2019, 8,3);
+        Goal myGoal = new Goal(-1, goalDate);
+        myGoal.setStartDays(70);
+        System.out.println("Extremity 1: " + getWeightLossExtremity(myGoal));
+
+        Date goalDate2 = new Date(2019, 5, 3);
+        Goal myGoal2 = new Goal(-5, goalDate2);
+        myGoal2.setStartDays(20);
+        System.out.println("Extremity 2: " + getWeightLossExtremity(myGoal2));
+
     }
 
 }
