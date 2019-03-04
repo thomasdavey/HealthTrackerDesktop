@@ -216,11 +216,14 @@ public class RegisterController implements Initializable {
         } else {
             double weightLoss = Double.parseDouble(weight.getText()) - Double.parseDouble(targetWeight.getText());
             Date date = Date.from(targetDate.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+            Goal startGoal = new Goal(weightLoss, date);
             if (weightLoss < 0) {
                 validationText.setText("Please enter a target weight less than your current weight");
                 return false;
+            } else if (Calculator.getWeightLossExtremity(startGoal) == 0) {
+                validationText.setText("Goal is unachievable in this time frame. Please set a more achievable goal.");
+                return false;
             } else {
-                Goal startGoal = new Goal(weightLoss, date);
                 newUser.addGoal(startGoal);
                 DBAdd.addGoal(newUser.getUserName(), startGoal);
             }

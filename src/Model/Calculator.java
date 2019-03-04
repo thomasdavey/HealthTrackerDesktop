@@ -49,14 +49,14 @@ public class Calculator {
     //method to calculate basic metabolic rate
     //age should be in yearsexercise
     //basic metabolic rate is how many calories your body needs with absolutely no exercise
-    public static double metabolicRate(double weight, double height, int age, char sex){
+    public static double metabolicRate(double weight, double height, int age, int sex){
 
         double metabolicRate = 0;
 
-        if (sex == 'M'){
+        if (sex == 0){
             metabolicRate = (10*weight) + (6.25*height) - (5*age) + 5;
         }
-        else if (sex == 'F'){
+        else if (sex == 1){
             metabolicRate = (10*weight) + (6.25*height) - (5*age) - 161;
         }
 
