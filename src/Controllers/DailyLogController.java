@@ -35,7 +35,7 @@ public class DailyLogController implements Initializable {
     public Label snackCalories;
 
     private static String meal;
-
+    private static String exercise;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -131,5 +131,27 @@ public class DailyLogController implements Initializable {
 
     public static String getMeal() {
         return meal;
+    }
+
+    public void addStrength(MouseEvent mouseEvent) throws IOException {
+        if (Launch.stage == Launch.primary) {
+            exercise = "Strength";
+            Parent root = FXMLLoader.load(getClass().getResource("/View/addExercise.fxml"));
+            Launch.newWindow(root, new Stage());
+            Launch.stage.setAlwaysOnTop(true);
+        }
+    }
+
+    public void addCardio(MouseEvent mouseEvent) throws IOException {
+        if (Launch.stage == Launch.primary) {
+            exercise = "Cardio";
+            Parent root = FXMLLoader.load(getClass().getResource("/View/addExercise.fxml"));
+            Launch.newWindow(root, new Stage());
+            Launch.stage.setAlwaysOnTop(true);
+        }
+    }
+
+    public static String getExercise() {
+        return exercise;
     }
 }

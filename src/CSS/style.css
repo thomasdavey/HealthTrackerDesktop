@@ -15,6 +15,10 @@
     -fx-fill: rgba(0,0,0,0.5);
 }
 
+.topGlyph3 {
+    -fx-fill: white;
+}
+
 .topButton:hover {
     -fx-background-color: white;
 }
@@ -23,12 +27,20 @@
     -fx-background-color: rgba(0,0,0,0.5);
 }
 
+.topButton3:hover {
+    -fx-background-color: white;
+}
+
 .topButton:hover *.topGlyph {
     -fx-fill: #FFB835;
 }
 
 .topButton2:hover *.topGlyph2 {
     -fx-fill: white;
+}
+
+.topButton3:hover *.topGlyph3 {
+    -fx-fill: #8BC1E7;
 }
 
 /* REGISTER FORM */
@@ -57,6 +69,16 @@
 
 .submitButton:hover {
     -fx-background-color: #FAC18F;
+}
+
+.submitButton2 {
+    -fx-background-color: #8BC1E7;
+    -fx-text-fill: white;
+    -fx-background-radius: 2px;
+}
+
+.submitButton2:hover {
+    -fx-background-color: #BFDDF1;
 }
 
 .registerButton:hover {
@@ -173,6 +195,10 @@
 
 .circleAdd:hover {
     -fx-fill: #F8A032;
+}
+
+.circleAdd2:hover {
+    -fx-fill: #8BC1E7;
 }
 
 .check-box .box {

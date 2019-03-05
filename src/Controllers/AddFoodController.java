@@ -1,7 +1,6 @@
 package Controllers;
 
 import DBClasses.DBAdd;
-import Model.Calculator;
 import application.Launch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -76,7 +75,7 @@ public class AddFoodController implements Initializable {
     }
 
     public void addCustom(MouseEvent mouseEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/View/addCustom.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/addCustomFood.fxml"));
         Launch.stage.getScene().setRoot(root);
     }
 
