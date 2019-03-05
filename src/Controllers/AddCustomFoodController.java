@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
-public class AddCustomController implements Initializable {
+public class AddCustomFoodController implements Initializable {
 
     public HBox topBar;
     public TextField name;
