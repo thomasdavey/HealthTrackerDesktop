@@ -34,7 +34,7 @@ public final class DBAdd extends DBAccess{
         getConnection();
         try {
             st.executeUpdate("INSERT INTO FOODS VALUES ('"+f.getName()+"', "+f.getKcals()+", "
-                    +f.getProtein()+", "+f.getCarbs()+", "+f.getFat()+", '"+f.getCategory()+"')");
+                    +f.getProtein()+", "+f.getCarbs()+", "+f.getFat()+", '"+f.getCategory()+"', NULL)");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -219,11 +219,15 @@ public final class DBAdd extends DBAccess{
         addFood(new Food("Wholemeal Pasta (100g)",325,0,0,0,"Grain"));
         addFood(new Food("Milk Chocolate (100g)",530,0,0,0,"Sweet"));
         addFood(new Food("Dark Chocolate (100g)",607,0,0,0,"Sweet"));
-        addFood(new Food("White Chocolate (100g)",595,0,0,0,"Sweet"));*/
-        //getFoods("Meat");
+        addFood(new Food("White Chocolate (100g)",595,0,0,0,"Sweet"));
+        getFoods("Meat");
         System.out.println(getFoodCalories("Butter (100g)"));
         Date today = new Date(119,2,5);
-        getMealCalories("td98", today, "Breakfast");
+        getMealCalories("td98", today, "Breakfast");*/
+        addFood(new Food("Orange Juice (250ml)",113,0,0,0,"Drink"));
+        addFood(new Food("Apple Juice (250ml)",115,0,0,0,"Drink"));
+        addFood(new Food("Cola (250ml)",95,0,0,0,"Drink"));
+        addFood(new Food("Lemonade (250ml)",98,0,0,0,"Drink"));
     }
 
 }

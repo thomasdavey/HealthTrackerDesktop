@@ -43,6 +43,7 @@ public class AddFoodController implements Initializable {
         category.getItems().add("Dairy");
         category.getItems().add("Grain");
         category.getItems().add("Sweet");
+        category.getItems().add("Drink");
         category.getItems().add("Custom");
     }
 
@@ -90,6 +91,7 @@ public class AddFoodController implements Initializable {
                 today, calorieCount, DailyLogController.getMeal());
         Launch.stage.close();
         Launch.stage = Launch.primary;
+        calorieCount = 0;
         Parent root = FXMLLoader.load(getClass().getResource("/View/dailyLog.fxml"));
         Launch.stage.getScene().setRoot(root);
     }

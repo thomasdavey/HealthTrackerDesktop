@@ -174,3 +174,9 @@
 .circleAdd:hover {
     -fx-fill: #F8A032;
 }
+
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color: rgba(0,0,0,0.3);
+    -fx-border-radius: 2px;
+}

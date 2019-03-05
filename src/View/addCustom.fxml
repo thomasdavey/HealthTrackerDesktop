@@ -58,7 +58,7 @@
                         <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="40.0" text="g" textFill="#00000066" />
                      </children>
                   </HBox>
-                  <CheckBox fx:id="save" mnemonicParsing="false" text="Save Food?">
+                  <CheckBox fx:id="save" mnemonicParsing="false" text="Save Food" textFill="#000000cc">
                      <font>
                         <Font name="PingFang HK Light" size="13.0" />
                      </font>
