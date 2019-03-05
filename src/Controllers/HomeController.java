@@ -2,7 +2,6 @@ package Controllers;
 
 import DBClasses.DBAdd;
 import DBClasses.LoadUser;
-import Model.Calculator;
 import Model.User;
 import application.Launch;
 import javafx.fxml.FXMLLoader;
@@ -57,12 +56,15 @@ public class HomeController implements Initializable {
         try {
             todayCalories = LoadUser.getCaloriesByDate(current.getUserName(), today);
         } catch (SQLException e) {
-            DBAdd.addCalories(current.getUserName(), today, todayCalories, "Start");
+            DBAdd.addCalories(current.getUserName(), today, todayCalories, "Breakfast");
+            DBAdd.addCalories(current.getUserName(), today, todayCalories, "Lunch");
+            DBAdd.addCalories(current.getUserName(), today, todayCalories, "Dinner");
+            DBAdd.addCalories(current.getUserName(), today, todayCalories, "Snack");
         }
 
         l.setText(String.valueOf(allowedCalories-todayCalories));
 
-        double progress = 1;
+        double progress = 0;
         if ((allowedCalories-todayCalories) > 0) {
             progress = (double)(allowedCalories-todayCalories) / allowedCalories;
         }
@@ -76,9 +78,9 @@ public class HomeController implements Initializable {
         l.setText(String.valueOf(current.getGoals().get(0).getDaysRemaining()));
 
         double remaining = current.getGoals().get(0).getDaysRemaining();
-        double percentage = 1;
-        if (remaining != 0) {
-            percentage -= (1 - (remaining / current.getGoals().get(0).getStartDays()));
+        double percentage = 0;
+        if (remaining > 0) {
+            percentage = remaining / current.getGoals().get(0).getStartDays();
         }
         p.setProgress(percentage);
     }
@@ -95,7 +97,7 @@ public class HomeController implements Initializable {
     }
 
     public void minimise(MouseEvent mouseEvent) {
-        Launch.stage.setIconified(true);
+        Launch.primary.setIconified(true);
     }
 
     public void close(MouseEvent mouseEvent) {

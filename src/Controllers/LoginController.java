@@ -32,7 +32,7 @@ public class LoginController implements Initializable {
     }
 
     public void minimise(MouseEvent mouseEvent) {
-        Launch.stage.setIconified(true);
+        Launch.primary.setIconified(true);
     }
 
     public void close(MouseEvent mouseEvent) {
@@ -43,6 +43,7 @@ public class LoginController implements Initializable {
         if (Launch.stage == Launch.primary) {
             Parent root = FXMLLoader.load(getClass().getResource("/View/register.fxml"));
             Launch.newWindow(root, new Stage());
+            Launch.stage.setAlwaysOnTop(true);
         }
     }
 
@@ -76,6 +77,7 @@ public class LoginController implements Initializable {
             Launch.stage.close();
         }
         Launch.newWindow(root, new Stage());
+        Launch.primary = Launch.stage;
     }
 
     private Boolean validate() {

@@ -7,10 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.chart.Axis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.input.MouseEvent;
@@ -65,12 +62,16 @@ public class GoalsController implements Initializable {
         }
 
         series = new XYChart.Series<>();
-        chart.getData().clear();
         int count = 6;
+
+        int high = Integer.MIN_VALUE;
+        int low = Integer.MAX_VALUE;
 
         for (int i = 0; i < 7; i++) {
             try {
                 int calories = LoadUser.getCaloriesByDate(Launch.getCurrentUser().getUserName(), dates[count]);
+                if (calories < low) low = calories;
+                if (calories > high) high = calories;
                 series.getData().add(new XYChart.Data<>(dateStrings[count], calories));
                 count--;
             } catch (SQLException e) {
@@ -79,11 +80,12 @@ public class GoalsController implements Initializable {
             }
         }
 
+        chart.getData().clear();
         chart.getData().add(series);
     }
 
     public void minimise(MouseEvent mouseEvent) {
-        Launch.stage.setIconified(true);
+        Launch.primary.setIconified(true);
     }
 
     public void close(MouseEvent mouseEvent) {

@@ -5,15 +5,12 @@ import Model.Calculator;
 import Model.Goal;
 import Model.User;
 import application.Launch;
-import javafx.fxml.FXMLLoader;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -46,7 +43,7 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Launch.makeStageDraggable(topBar);
+        Launch.makePopupDraggable(topBar);
 
         dob.setShowWeekNumbers(false);
         dob.setDayCellFactory(picker -> new DateCell() {
@@ -67,6 +64,9 @@ public class RegisterController implements Initializable {
             }
             }
         });
+
+        setActivityLevel();
+        setSex();
     }
 
     public void minimise(MouseEvent mouseEvent) {
@@ -78,20 +78,16 @@ public class RegisterController implements Initializable {
         Launch.stage = Launch.primary;
     }
 
-    public void setActivityLevel(MouseEvent mouseEvent) {
-        activityLevel.getItems().clear();
+    public void setActivityLevel() {
         activityLevel.getItems().add("Less than 2 hours per week");
         activityLevel.getItems().add("2-5 hours per week");
         activityLevel.getItems().add("6-10 hours per week");
         activityLevel.getItems().add("More than 10 hours per week");
-        activityPrompt.setStyle("-fx-text-fill: transparent");
     }
 
-    public void setSex(MouseEvent mouseEvent) {
-        sex.getItems().clear();
+    public void setSex() {
         sex.getItems().add("Male");
         sex.getItems().add("Female");
-        sexPrompt.setStyle("-fx-text-fill: transparent");
     }
 
     private Boolean validate() {
@@ -244,5 +240,13 @@ public class RegisterController implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void removeSex(ActionEvent actionEvent) {
+        sexPrompt.setStyle("-fx-text-fill: transparent");
+    }
+
+    public void removeActivity(ActionEvent actionEvent) {
+        activityPrompt.setStyle("-fx-text-fill: transparent");
     }
 }

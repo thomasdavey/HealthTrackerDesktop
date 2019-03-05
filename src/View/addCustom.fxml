@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="325.0" style="-fx-background-color: linear-gradient(to bottom, #fdc830, #f37335);" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddCustomController">
+    <children>
+        <HBox fx:id="topBar" alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="325.0" style="-fx-background-color: rgba(255,255,255,0.25);">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimise" prefHeight="30.0" prefWidth="30.0" styleClass="topButton">
+                    <graphic>
+                        <FontAwesomeIconView glyphName="MINUS" styleClass="topGlyph" translateY="1.0" />
+                    </graphic>
+                </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#close" prefHeight="30.0" prefWidth="30.0" styleClass="topButton">
+                    <graphic>
+                        <FontAwesomeIconView glyphName="CLOSE" styleClass="topGlyph" />
+                    </graphic>
+                </Label>
+            </children>
+        </HBox>
+        <Label alignment="CENTER" layoutY="54.0" prefWidth="325.0" style="-fx-font-size: 30;" text="Add Custom Food" textFill="WHITE" />
+      <HBox layoutY="115.0" prefHeight="325.0" prefWidth="325.0" style="-fx-background-color: white;" />
+      <HBox layoutY="115.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="325.0" prefWidth="325.0" spacing="13.0">
+               <children>
+                  <TextField fx:id="name" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Food Name" styleClass="registerField" />
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" styleClass="registerField">
+                     <children>
+                        <TextField fx:id="calories" prefWidth="210.0" promptText="Calories" style="-fx-prompt-text-fill: rgba(0,0,0,0.4); -fx-text-fill: rgba(0,0,0,0.8); -fx-background-color: transparent;" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="40.0" text="kcal" textFill="#00000066" />
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" styleClass="registerField">
+                     <children>
+                        <TextField fx:id="protein" prefWidth="210.0" promptText="Protein" style="-fx-prompt-text-fill: rgba(0,0,0,0.4); -fx-text-fill: rgba(0,0,0,0.8); -fx-background-color: transparent;" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="40.0" text="g" textFill="#00000066" />
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" styleClass="registerField">
+                     <children>
+                        <TextField fx:id="carbs" prefWidth="210.0" promptText="Carbohydrates" style="-fx-prompt-text-fill: rgba(0,0,0,0.4); -fx-text-fill: rgba(0,0,0,0.8); -fx-background-color: transparent;" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="40.0" text="g" textFill="#00000066" />
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" styleClass="registerField">
+                     <children>
+                        <TextField fx:id="fat" prefWidth="210.0" promptText="Fat" style="-fx-prompt-text-fill: rgba(0,0,0,0.4); -fx-text-fill: rgba(0,0,0,0.8); -fx-background-color: transparent;" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="40.0" text="g" textFill="#00000066" />
+                     </children>
+                  </HBox>
+                  <CheckBox fx:id="save" mnemonicParsing="false" text="Save Food?">
+                     <font>
+                        <Font name="PingFang HK Light" size="13.0" />
+                     </font>
+                  </CheckBox>
+                  <Button mnemonicParsing="false" onMouseClicked="#addFood" prefHeight="30.0" prefWidth="250.0" styleClass="registerButton" text="Add Food" />
+               </children>
+               <padding>
+                  <Insets top="25.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+    </children>
+</AnchorPane>

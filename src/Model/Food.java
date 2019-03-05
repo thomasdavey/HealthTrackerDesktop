@@ -7,13 +7,27 @@ public class Food {
     private int protein;
     private int carbs;
     private int fat;
+    private String category;
+    private String username;
 
-    public Food(String name, int kcals, int protein, int carbs, int fat){
+    public Food(String name, int kcals, int protein, int carbs, int fat, String category, String username){
         this.name = name;
         this.kcals = kcals;
         this.protein = protein;
         this.carbs = carbs;
         this.fat = fat;
+        this.category = category;
+        this.username = username;
+    }
+
+    public Food(String name, int kcals, int protein, int carbs, int fat, String category){
+        this.name = name;
+        this.kcals = kcals;
+        this.protein = protein;
+        this.carbs = carbs;
+        this.fat = fat;
+        this.category = category;
+        this.username = "Global";
     }
 
     public String getName() {
@@ -62,6 +76,18 @@ public class Food {
 
     public void setFat(int fat) {
         this.fat = fat;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return this.category;
+    }
+
+    public String getUsername() {
+        return this.username;
     }
 
     @Override

@@ -23,7 +23,7 @@ public class GroupsController implements Initializable {
     }
 
     public void minimise(MouseEvent mouseEvent) {
-        Launch.stage.setIconified(true);
+        Launch.primary.setIconified(true);
     }
 
     public void close(MouseEvent mouseEvent) {

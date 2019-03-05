@@ -18,6 +18,8 @@ public class Launch extends Application {
 
     private static double xOffSet = 0;
     private static double yOffSet = 0;
+    private static double xOffSetPopup = 0;
+    private static double yOffSetPopup = 0;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -27,14 +29,27 @@ public class Launch extends Application {
         newWindow(root, primary);
     }
 
+    @SuppressWarnings("Duplicates")
     public static void makeStageDraggable(HBox topBar) {
         topBar.setOnMousePressed((event) -> {
             xOffSet = event.getSceneX();
             yOffSet = event.getSceneY();
         });
         topBar.setOnMouseDragged((event) -> {
-            stage.setX(event.getScreenX() - xOffSet);
-            stage.setY(event.getScreenY() - yOffSet);
+            primary.setX(event.getScreenX() - xOffSet);
+            primary.setY(event.getScreenY() - yOffSet);
+        });
+    }
+
+    @SuppressWarnings("Duplicates")
+    public static void makePopupDraggable(HBox topBar) {
+        topBar.setOnMousePressed((event) -> {
+            xOffSetPopup = event.getSceneX();
+            yOffSetPopup = event.getSceneY();
+        });
+        topBar.setOnMouseDragged((event) -> {
+            stage.setX(event.getScreenX() - xOffSetPopup);
+            stage.setY(event.getScreenY() - yOffSetPopup);
         });
     }
 

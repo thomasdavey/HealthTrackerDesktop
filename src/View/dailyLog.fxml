@@ -163,9 +163,9 @@
                            <children>
                               <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0">
                                  <children>
-                                    <ProgressIndicator fx:id="progress" prefHeight="150.0" prefWidth="150.0" progress="0.82" />
+                                    <ProgressIndicator fx:id="calorieProgress" prefHeight="150.0" prefWidth="150.0" progress="0.82" />
                                     <Circle fill="WHITE" layoutX="75.0" layoutY="66.0" radius="46.0" stroke="WHITE" strokeType="INSIDE" />
-                                    <Label fx:id="progressString" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="100.0" prefWidth="100.0" text="1781" textFill="#00000080">
+                                    <Label fx:id="calorieLeft" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="100.0" prefWidth="100.0" text="1781" textFill="#00000080">
                                        <font>
                                           <Font name="PingFang HK Ultralight" size="24.0" />
                                        </font>
@@ -179,9 +179,9 @@
                               </Pane>
                               <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0">
                                  <children>
-                                    <ProgressIndicator fx:id="progress1" prefHeight="150.0" prefWidth="150.0" progress="0.72" style="-fx-progress-color: #8BC1E7;" />
+                                    <ProgressIndicator fx:id="exerciseProgress" prefHeight="150.0" prefWidth="150.0" progress="0.72" style="-fx-progress-color: #8BC1E7;" />
                                     <Circle fill="WHITE" layoutX="75.0" layoutY="66.0" radius="46.0" stroke="WHITE" strokeType="INSIDE" />
-                                    <Label fx:id="progressString1" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="100.0" prefWidth="100.0" text="380" textFill="#00000080">
+                                    <Label fx:id="exerciseLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="100.0" prefWidth="100.0" text="380" textFill="#00000080">
                                        <font>
                                           <Font name="PingFang HK Ultralight" size="24.0" />
                                        </font>
@@ -299,15 +299,15 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="22.0" prefHeight="30.0" prefWidth="30.0">
                                  <graphic>
-                                    <FontAwesomeIconView fill="#00000080" glyphName="PLUS_CIRCLE" size="30" />
+                                    <FontAwesomeIconView fill="#00000080" glyphName="PLUS_CIRCLE" onMouseClicked="#addBreakfast" size="30" styleClass="circleAdd" />
                                  </graphic>
                               </Label>
-                              <Label layoutX="144.0" layoutY="9.0" prefWidth="100.0" text="0">
+                              <Label fx:id="breakCurrent" layoutX="144.0" layoutY="9.0" prefWidth="100.0" text="0">
                                  <font>
                                     <Font name="PingFang HK Light" size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="150.0" layoutY="46.0" prefWidth="100.0" text="0" textFill="#000000cc">
+                              <Label fx:id="breakCalories" layoutX="150.0" layoutY="46.0" prefWidth="100.0" text="0" textFill="#000000cc">
                                  <font>
                                     <Font name="PingFang HK Light" size="13.0" />
                                  </font>
@@ -328,15 +328,15 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="22.0" prefHeight="30.0" prefWidth="30.0">
                                  <graphic>
-                                    <FontAwesomeIconView fill="#00000080" glyphName="PLUS_CIRCLE" size="30" />
+                                    <FontAwesomeIconView fill="#00000080" glyphName="PLUS_CIRCLE" onMouseClicked="#addLunch" size="30" styleClass="circleAdd" />
                                  </graphic>
                               </Label>
-                              <Label layoutX="104.0" layoutY="9.0" text="0">
+                              <Label fx:id="lunchCurrent" layoutX="104.0" layoutY="9.0" prefWidth="100.0" text="0">
                                  <font>
                                     <Font name="PingFang HK Light" size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="150.0" layoutY="46.0" prefWidth="100.0" text="0" textFill="#000000cc">
+                              <Label fx:id="lunchCalories" layoutX="150.0" layoutY="46.0" prefWidth="100.0" text="0" textFill="#000000cc">
                                  <font>
                                     <Font name="PingFang HK Light" size="13.0" />
                                  </font>
@@ -357,15 +357,15 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="22.0" prefHeight="30.0" prefWidth="30.0">
                                  <graphic>
-                                    <FontAwesomeIconView fill="#00000080" glyphName="PLUS_CIRCLE" size="30" />
+                                    <FontAwesomeIconView fill="#00000080" glyphName="PLUS_CIRCLE" onMouseClicked="#addDinner" size="30" styleClass="circleAdd" />
                                  </graphic>
                               </Label>
-                              <Label layoutX="109.0" layoutY="9.0" prefWidth="100.0" text="0">
+                              <Label fx:id="dinnerCurrent" layoutX="109.0" layoutY="9.0" prefWidth="100.0" text="0">
                                  <font>
                                     <Font name="PingFang HK Light" size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="150.0" layoutY="46.0" prefWidth="100.0" text="0" textFill="#000000cc">
+                              <Label fx:id="dinnerCalories" layoutX="150.0" layoutY="46.0" prefWidth="100.0" text="0" textFill="#000000cc">
                                  <font>
                                     <Font name="PingFang HK Light" size="13.0" />
                                  </font>
@@ -386,15 +386,15 @@
                               </Label>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="22.0" prefHeight="30.0" prefWidth="30.0">
                                  <graphic>
-                                    <FontAwesomeIconView fill="#00000080" glyphName="PLUS_CIRCLE" size="30" />
+                                    <FontAwesomeIconView fill="#00000080" glyphName="PLUS_CIRCLE" onMouseClicked="#addSnack" size="30" styleClass="circleAdd" />
                                  </graphic>
                               </Label>
-                              <Label layoutX="105.0" layoutY="9.0" prefWidth="100.0" text="0">
+                              <Label fx:id="snackCurrent" layoutX="105.0" layoutY="9.0" prefWidth="100.0" text="0">
                                  <font>
                                     <Font name="PingFang HK Light" size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="150.0" layoutY="46.0" prefWidth="100.0" text="0" textFill="#000000cc">
+                              <Label fx:id="snackCalories" layoutX="150.0" layoutY="46.0" prefWidth="100.0" text="0" textFill="#000000cc">
                                  <font>
                                     <Font name="PingFang HK Light" size="13.0" />
                                  </font>

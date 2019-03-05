@@ -58,7 +58,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="360.0" prefWidth="325.0" spacing="13.0">
                <children>
-                  <ComboBox fx:id="sex" onMouseClicked="#setSex" prefHeight="30.0" prefWidth="250.0" styleClass="registerField" />
+                  <ComboBox fx:id="sex" onAction="#removeSex" prefHeight="30.0" prefWidth="250.0" styleClass="registerField" />
                   <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" styleClass="registerField">
                      <children>
                         <TextField fx:id="height" prefWidth="220.0" promptText="Height" style="-fx-prompt-text-fill: rgba(0,0,0,0.4); -fx-text-fill: rgba(0,0,0,0.8); -fx-background-color: transparent;" />
@@ -71,7 +71,7 @@
                         <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" text="kg" textFill="#00000066" />
                      </children>
                   </HBox>
-                  <ComboBox fx:id="activityLevel" onMouseClicked="#setActivityLevel" prefHeight="30.0" prefWidth="250.0" styleClass="registerField" />
+                  <ComboBox fx:id="activityLevel" onAction="#removeActivity" prefHeight="30.0" prefWidth="250.0" styleClass="registerField" />
                   <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" styleClass="registerField">
                      <children>
                         <TextField fx:id="targetWeight" prefWidth="220.0" promptText="Target Weight" style="-fx-prompt-text-fill: rgba(0,0,0,0.4); -fx-text-fill: rgba(0,0,0,0.8); -fx-background-color: transparent;" />
