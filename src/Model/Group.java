@@ -14,22 +14,21 @@ import javax.activation.*;
 
 public class Group {
 
-    private User[] members;
+    private ArrayList<User> members;
     private Goal groupGoal;
     private String groupName;
-    ServerSocket socket;
 
-    public Group(User[] members, Goal groupGoal, String groupName){
+    public Group(ArrayList<User> members, Goal groupGoal, String groupName){
         this.members = members;
         this.groupGoal = groupGoal;
         this.groupName = groupName;
     }
 
-    public User[] getMembers() {
+    public ArrayList<User> getMembers() {
         return members;
     }
 
-    public void setMembers(User[] members) {
+    public void setMembers(ArrayList<User> members) {
         this.members = members;
     }
 
@@ -50,84 +49,144 @@ public class Group {
     }
 
     public void joinGroup(User user){
-        Arrays.copyOf(this.members, this.members.length + 1);
-        this.members[this.members.length - 1] = user;
+        this.members.add(user);
     }
 
     //delete the users membership from the group
     //update the array and return true if successful
     public boolean deleteMembership(User user){
 
-        for (int i = 0; i < this.members.length; i++){
-            if (user.equals(this.members[i])){
-                this.members[i] = null;
-                for (int j = i + 1; j < this.members.length; j++){
-                    this.members[j-1] = this.members[j];
-                }
-                Arrays.copyOf(this.members, this.members.length - 1);
+        if (this.members.contains(user)){
+            this.members.remove(user);
                 return true;
             }
-        }
 
         return false;
 
     }
 
-    /*public void sendGroupDetails(User sender, User recipient){
+    protected String randomString() {
 
-        String from = sender.getEmail();
-        String to = recipient.getEmail();
-        String host = "localhost";
-
-        Properties properties = System.getProperties();
-        properties.setProperty("mail.smtp.host", host);
-        Session session = Session.getDefaultInstance(properties);
-
-        try {
-            MimeMessage message = new MimeMessage(session);
-
-            message.setFrom(new InternetAddress(from));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
-            message.setSubject("Group Details");
-            message.setText("This is a message about a group");
-
-            Transport.send(message);
-            System.out.println("message has been sent");
+        String CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder random = new StringBuilder();
+        Random rnd = new Random();
+        while (random.length() < 10) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * CHARS.length());
+            random.append(CHARS.charAt(index));
         }
-        catch (MessagingException mex){
-            mex.printStackTrace();
-        }
+        String randomString = random.toString();
+        return randomString;
 
-    }*/
+    }
 
-    public void createHost() throws IOException {
-        socket = new ServerSocket(9090, 0, InetAddress.getByName(null));
+    public void sendGroupDetails(User sender, User recipient) throws MessagingException {
+
+        Properties prop = new Properties();
+        prop.put("mail.smtp.auth", true);
+        prop.put("mail.smtp.starttls.enable", "true");
+        prop.put("mail.smtp.host", "smtp.mailtrap.io");
+        prop.put("mail.smtp.port", "25");
+        prop.put("mail.smtp.ssl.trust", "smtp.mailtrap.io");
+
+        Session session = Session.getInstance(prop, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication( "2d962aa3c7a979", "27b172431ebc56");
+            }
+        });
+
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(sender.getEmail()));
+        message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(recipient.getEmail()));
+        message.setSubject(this.getGroupName() + " has invited you to join their group!");
+
+
+
+        String msg = "GROUP DETAILS \n \n Group name: " + this.getGroupName() +
+                "\nMembers: " + this.getMembers() + "\n Group Goal: " + this.getGroupGoal() +
+                "\n\n If you would like to join this group, paste the code below " +
+                "into the prompt box when pressing 'Join Group'." + "\n\n" + randomString();
+
+        MimeBodyPart mimeBodyPart = new MimeBodyPart();
+        mimeBodyPart.setContent(msg, "text/html");
+
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(mimeBodyPart);
+
+        message.setContent(multipart);
+        Transport.send(message);
+
+    }
+
+    public void sendGoalCompletedEmail(User sender, User recipient) throws MessagingException{
+
+        Properties prop = new Properties();
+        prop.put("mail.smtp.auth", true);
+        prop.put("mail.smtp.starttls.enable", "true");
+        prop.put("mail.smtp.host", "smtp.mailtrap.io");
+        prop.put("mail.smtp.port", "25");
+        prop.put("mail.smtp.ssl.trust", "smtp.mailtrap.io");
+
+        Session session = Session.getInstance(prop, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication( "2d962aa3c7a979", "27b172431ebc56");
+            }
+        });
+
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(sender.getEmail()));
+        message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(recipient.getEmail()));
+        message.setSubject("GOAL COMPLETED!");
+
+
+
+        String msg = "GOAL COMPLETED!\n\n" + "Congratulations! Your group has met their goal." +
+                "Goal details: \n" + this.getGroupGoal();
+
+        MimeBodyPart mimeBodyPart = new MimeBodyPart();
+        mimeBodyPart.setContent(msg, "text/html");
+
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(mimeBodyPart);
+
+        message.setContent(multipart);
+        Transport.send(message);
+
     }
 
     public static void main(String args[]) throws IOException {
 
         User amy = new User("amyPryor");
         amy.setFirstName("Amy");
+        amy.setLastName("Pryor");
         amy.setEmail("amy.a.p@hotmail.com");
 
         User tom = new User("tomDavey");
         tom.setFirstName("Tom");
+        tom.setLastName("Davey");
 
         User jamie = new User("jamieGreasley");
         jamie.setFirstName("Jamie");
+        jamie.setLastName("Greasley");
 
-        /*Date goalDate = new Date(2019, 8,3);
-        Goal groupGoal = new Goal(-10, goalDate);
-        User[] mem = {amy, tom};
+        Date goalDate = new Date(2019, 8,3);
+        Goal groupGoal = new Goal(-10, goalDate, 82.0);
+        ArrayList<User> mem = new ArrayList<>();
+        mem.add(amy);
+        mem.add(jamie);
+        mem.add(tom);
 
-        Group group = new Group(mem, groupGoal, "group1");
+        Group group = new Group(mem, groupGoal, "Group 1");
         group.joinGroup(jamie);
-        group.deleteMembership(jamie);*/
+        group.deleteMembership(jamie);
 
-        //SENDING EMAIL NOT WORKING YET
-        //group.createHost();
-        //group.sendGroupDetails(amy, amy);
+        try {
+            group.sendGroupDetails(amy, amy);
+            group.sendGoalCompletedEmail(amy, amy);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
 }
