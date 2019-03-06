@@ -1,16 +1,9 @@
 package Model;
 
-import sun.plugin2.message.Message;
-
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
-import javax.activation.*;
 
 public class Group {
 
@@ -25,26 +18,32 @@ public class Group {
     }
 
     public ArrayList<User> getMembers() {
+
         return members;
     }
 
     public void setMembers(ArrayList<User> members) {
+
         this.members = members;
     }
 
     public Goal getGroupGoal() {
+
         return groupGoal;
     }
 
     public void setGroupGoal(Goal groupGoal) {
+
         this.groupGoal = groupGoal;
     }
 
     public String getGroupName() {
+
         return groupName;
     }
 
     public void setGroupName(String groupName) {
+
         this.groupName = groupName;
     }
 
@@ -53,7 +52,7 @@ public class Group {
     }
 
     //delete the users membership from the group
-    //update the array and return true if successful
+    //return true if successful
     public boolean deleteMembership(User user){
 
         if (this.members.contains(user)){
@@ -65,6 +64,7 @@ public class Group {
 
     }
 
+    //generates a random alphanumerical string of 10 characters to be used as verification within an email
     protected String randomString() {
 
         String CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -79,7 +79,8 @@ public class Group {
 
     }
 
-    public void sendGroupDetails(User sender, User recipient) throws MessagingException {
+    //generic method to send a mime email
+    public void sendEmail(User sender, User recipient, String msg, String subject) throws MessagingException{
 
         Properties prop = new Properties();
         prop.put("mail.smtp.auth", true);
@@ -98,14 +99,7 @@ public class Group {
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(sender.getEmail()));
         message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(recipient.getEmail()));
-        message.setSubject(this.getGroupName() + " has invited you to join their group!");
-
-
-
-        String msg = "GROUP DETAILS \n \n Group name: " + this.getGroupName() +
-                "\nMembers: " + this.getMembers() + "\n Group Goal: " + this.getGroupGoal() +
-                "\n\n If you would like to join this group, paste the code below " +
-                "into the prompt box when pressing 'Join Group'." + "\n\n" + randomString();
+        message.setSubject(subject);
 
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
         mimeBodyPart.setContent(msg, "text/html");
@@ -118,40 +112,43 @@ public class Group {
 
     }
 
+    //method to send group details to a user with a code to enable them to join the group
+    public void sendGroupDetails(User sender, User recipient) throws MessagingException {
+
+        String subject = this.getGroupName() + "has invited you to join their group!";
+
+        String msg = "GROUP DETAILS \n \n Group name: " + this.getGroupName() +
+                "\nMembers: " + this.getMembers() + "\n Group Goal: " + this.getGroupGoal() +
+                "\n\n If you would like to join this group, paste the code below " +
+                "into the prompt box when clicking 'Join Group'." + "\n\n" + randomString();
+
+        sendEmail(sender, recipient, msg, subject);
+
+    }
+
+    //method to send group goal details to a user with a code to enable them to accept the goal
+    public void sendNewGoalDetails(User sender, User recipient) throws MessagingException {
+
+        String subject = this.getGroupName() + " has invited you to join their goal!";
+
+        String msg = "Your group " + this.getGroupName() + " has created a new goal and would like " +
+                "you to join.\n" + "Goal details: " + this.getGroupGoal() +
+                "\n\nIf you would like to join this goal, paste the code below " +
+                "into the prompt box when clicking 'Join Goal'.\n\n" + randomString();
+
+        sendEmail(sender, recipient, msg, subject);
+
+    }
+
+    //method to send an email congratulating a user for completing a group goal
     public void sendGoalCompletedEmail(User sender, User recipient) throws MessagingException{
 
-        Properties prop = new Properties();
-        prop.put("mail.smtp.auth", true);
-        prop.put("mail.smtp.starttls.enable", "true");
-        prop.put("mail.smtp.host", "smtp.mailtrap.io");
-        prop.put("mail.smtp.port", "25");
-        prop.put("mail.smtp.ssl.trust", "smtp.mailtrap.io");
-
-        Session session = Session.getInstance(prop, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication( "2d962aa3c7a979", "27b172431ebc56");
-            }
-        });
-
-        MimeMessage message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(sender.getEmail()));
-        message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(recipient.getEmail()));
-        message.setSubject("GOAL COMPLETED!");
-
-
+        String subject = "Group " + this.getGroupName() + " has completed it's goal!";
 
         String msg = "GOAL COMPLETED!\n\n" + "Congratulations! Your group has met their goal." +
                 "Goal details: \n" + this.getGroupGoal();
 
-        MimeBodyPart mimeBodyPart = new MimeBodyPart();
-        mimeBodyPart.setContent(msg, "text/html");
-
-        Multipart multipart = new MimeMultipart();
-        multipart.addBodyPart(mimeBodyPart);
-
-        message.setContent(multipart);
-        Transport.send(message);
+        sendEmail(sender, recipient, msg, subject);
 
     }
 
@@ -181,9 +178,11 @@ public class Group {
         group.joinGroup(jamie);
         group.deleteMembership(jamie);
 
+        //can't send all these at the same time so one is commented out
         try {
             group.sendGroupDetails(amy, amy);
-            group.sendGoalCompletedEmail(amy, amy);
+            group.sendNewGoalDetails(amy, amy);
+            //group.sendGoalCompletedEmail(amy, amy);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
