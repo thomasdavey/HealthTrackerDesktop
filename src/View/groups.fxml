@@ -3,6 +3,8 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -136,11 +138,38 @@
                   </Label>
                </children>
             </HBox>
-            <VBox layoutY="30.0" prefHeight="620.0" prefWidth="775.0">
-               <padding>
-                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-               </padding>
-            </VBox>
+            <HBox alignment="BOTTOM_RIGHT" layoutY="30.0" prefHeight="620.0" prefWidth="775.0" style="-fx-background-color: rgba(0,0,0,0.05);">
+               <children>
+                  <VBox>
+                     <children>
+                        <ScrollPane fx:id="messageDisplay" fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="570.0" prefWidth="525.0" styleClass="edge-to-edge" translateY="1.0" vbarPolicy="ALWAYS" />
+                        <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="525.0" style="-fx-background-color: white; -fx-border-color: rgba(0,0,0,0.1); -fx-border-width: 1px 0px 0px 0px;">
+                           <children>
+                              <HBox alignment="CENTER" prefWidth="475.0" style="-fx-background-color: rgba(0,0,0,0.05); -fx-background-radius: 100px; -fx-border-color: rgba(0,0,0,0.1); -fx-border-radius: 100px;">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <TextField fx:id="message" onKeyPressed="#onEnter" prefWidth="460.0" style="-fx-background-color: transparent;" />
+                                 </children>
+                              </HBox>
+                              <Label alignment="CENTER" onMouseClicked="#sendClicked" prefHeight="40.0" prefWidth="40.0" styleClass="sendButton">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#0000007f" glyphName="SEND" size="17" styleClass="sendGlyph" />
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ScrollPane fx:id="scrollPane" fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: rgba(0,0,0,0.1); -fx-border-width: 0px 0px 0px 1px;" styleClass="edge-to-edge" translateY="1.0" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: rgba(0,0,0,0.1); -fx-border-width: 1px 0px 0px 1px;" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </children>

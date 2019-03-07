@@ -1,9 +1,6 @@
 package DBClasses;
 
-import Model.Exercise;
-import Model.Food;
-import Model.Goal;
-import Model.User;
+import Model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -143,29 +140,98 @@ public final class DBAdd extends DBAccess{
         closeConnection();
     }
 
-    public static void updateCalories(String u, int c){
-        getConnection();
-        Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-
-        try {
-            st.executeUpdate("UPDATE CALORIECOUNTS SET KCALS = KCALS + "
-                    +c+" WHERE USERNAME = '"+u+"' AND DATE = '"+date+"'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        closeConnection();
-    }
-
     public static void addExercise(Exercise ex){
         getConnection();
         try {
             st.executeUpdate("INSERT INTO EXERCISE VALUES ('"+ex.getName()+"', '"
-                    +ex.getType().name()+"', "+ex.getCalsBurnedPer5Mins()+")");
+                    +ex.getType().name()+"', "+ex.getCalPerMin()+", NULL)");
         } catch (SQLException e) {
             e.printStackTrace();
         }
         closeConnection();
+    }
+
+    public static void addCustomExercise(Exercise ex){
+        getConnection();
+        try {
+            st.executeUpdate("INSERT INTO EXERCISE VALUES ('"+ex.getName()+"', '"
+                    +ex.getType().name()+"', "+ex.getCalPerMin()+", '"+ex.getUsername()+"')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+    }
+
+    public static ArrayList<String> getExercises(String username, Exercise.Type type) {
+        ArrayList<String> exercises = new ArrayList<>();
+        ResultSet rs = null;
+
+        getConnection();
+        try {
+            rs = st.executeQuery("(SELECT NAME FROM EXERCISE WHERE USERNAME = '"+username+
+                    "' OR USERNAME IS NULL) INTERSECT (SELECT NAME FROM EXERCISE WHERE TYPE = '" +type+"')");
+            while (rs.next()) {
+                exercises.add(rs.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+
+        return exercises;
+    }
+
+    public static int getExerciseCalories(String name, double weight, int duration) {
+        double calories = -1*weight*duration;
+        ResultSet rs = null;
+
+        getConnection();
+        try {
+            rs = st.executeQuery("SELECT CALPERMIN FROM EXERCISE WHERE NAME = '"+name+"'");
+            rs.next();
+            calories *= (rs.getDouble(1)*2.205);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+
+        return (int)calories;
+    }
+
+    public static void addMesage(String user, Group group, String message) {
+        java.util.Date date = new java.util.Date();
+        Timestamp now = new Timestamp(date.getTime());
+        getConnection();
+        try {
+            st.executeUpdate("INSERT INTO MESSAGES VALUES ('"+user+"','"+group.getGroupName()+"','"
+                    +message+"','"+now+"')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Message> getMessages(String groupID) {
+        ArrayList<Message> messages = new ArrayList<>();
+        ResultSet rs = null;
+        String user, name, message;
+
+        getConnection();
+        try {
+            rs = st.executeQuery("SELECT PROFILE.USERNAME, PROFILE.FIRSTNAME, PROFILE.SURNAME, MESSAGES.MESSAGE " +
+                    "FROM MESSAGES JOIN PROFILE ON MESSAGES.USERNAME = PROFILE.USERNAME WHERE GROUPID = '" +groupID+
+                    "' ORDER BY MESSAGES.DATE");
+            while (rs.next()) {
+                user = rs.getString(1);
+                name = rs.getString(2) + " " + rs.getString(3);
+                message = rs.getString(4);
+                messages.add(new Message(user,name,message));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+
+        return messages;
     }
 
     public static void main(String[] args) {
@@ -224,10 +290,31 @@ public final class DBAdd extends DBAccess{
         System.out.println(getFoodCalories("Butter (100g)"));
         Date today = new Date(119,2,5);
         getMealCalories("td98", today, "Breakfast");*/
-        addFood(new Food("Orange Juice (250ml)",113,0,0,0,"Drink"));
+        /*addFood(new Food("Orange Juice (250ml)",113,0,0,0,"Drink"));
         addFood(new Food("Apple Juice (250ml)",115,0,0,0,"Drink"));
         addFood(new Food("Cola (250ml)",95,0,0,0,"Drink"));
-        addFood(new Food("Lemonade (250ml)",98,0,0,0,"Drink"));
+        addFood(new Food("Lemonade (250ml)",98,0,0,0,"Drink"));*/
+
+        /*addExercise(new Exercise("Walking", Exercise.Type.CARDIO, 0.032));
+        addExercise(new Exercise("Running", Exercise.Type.CARDIO, 0.064));
+        addExercise(new Exercise("Bicycling", Exercise.Type.CARDIO, 0.064));
+        addExercise(new Exercise("Swimming", Exercise.Type.CARDIO, 0.048));
+        addExercise(new Exercise("Football", Exercise.Type.CARDIO, 0.056));
+        addExercise(new Exercise("Basketball", Exercise.Type.CARDIO, 0.064));
+        addExercise(new Exercise("Hockey", Exercise.Type.CARDIO, 0.064));
+        addExercise(new Exercise("Tennis", Exercise.Type.CARDIO, 0.056));
+        addExercise(new Exercise("Badminton", Exercise.Type.CARDIO, 0.036));
+
+        addExercise(new Exercise("Free Weights", Exercise.Type.STRENGTH, 0.048));
+        addExercise(new Exercise("Push-ups", Exercise.Type.STRENGTH, 0.055));
+        addExercise(new Exercise("Pull-ups", Exercise.Type.STRENGTH, 0.064));
+        addExercise(new Exercise("Sit-ups", Exercise.Type.STRENGTH, 0.030));
+        addExercise(new Exercise("Lunges", Exercise.Type.STRENGTH, 0.060));
+        addExercise(new Exercise("Squats", Exercise.Type.STRENGTH, 0.038));
+        addExercise(new Exercise("Crunches", Exercise.Type.STRENGTH, 0.030));
+        addExercise(new Exercise("Planks", Exercise.Type.STRENGTH, 0.030));
+        addExercise(new Exercise("Star Jumps", Exercise.Type.STRENGTH, 0.063));
+        addExercise(new Exercise("Resistance Training", Exercise.Type.STRENGTH, 0.048));*/
     }
 
 }

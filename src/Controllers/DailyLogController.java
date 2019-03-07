@@ -1,7 +1,9 @@
 package Controllers;
 
 import DBClasses.DBAdd;
+import DBClasses.LoadUser;
 import Model.Calculator;
+import Model.Exercise;
 import application.Launch;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -35,7 +38,8 @@ public class DailyLogController implements Initializable {
     public Label snackCalories;
 
     private static String meal;
-    private static String exercise;
+    private static Exercise.Type exercise;
+    public Label net;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -57,6 +61,15 @@ public class DailyLogController implements Initializable {
         lunchCalories.setText(String.valueOf(Calculator.targetLunch(calories)));
         dinnerCalories.setText(String.valueOf(Calculator.targetDinner(calories)));
         snackCalories.setText(String.valueOf(Calculator.targetSnacks(calories)));
+
+        try {
+            int loss = LoadUser.getCaloriesByDate(user,today,true);
+            exerciseLabel.setText(String.valueOf(loss*-1));
+            int net =  LoadUser.getCaloriesByDate(user,today,false) + loss;
+            this.net.setText("Net Calories Today: " + net);
+        } catch (SQLException e) {
+
+        }
     }
 
     public void minimise(MouseEvent mouseEvent) {
@@ -135,7 +148,7 @@ public class DailyLogController implements Initializable {
 
     public void addStrength(MouseEvent mouseEvent) throws IOException {
         if (Launch.stage == Launch.primary) {
-            exercise = "Strength";
+            exercise = Exercise.Type.STRENGTH;
             Parent root = FXMLLoader.load(getClass().getResource("/View/addExercise.fxml"));
             Launch.newWindow(root, new Stage());
             Launch.stage.setAlwaysOnTop(true);
@@ -144,14 +157,14 @@ public class DailyLogController implements Initializable {
 
     public void addCardio(MouseEvent mouseEvent) throws IOException {
         if (Launch.stage == Launch.primary) {
-            exercise = "Cardio";
+            exercise = Exercise.Type.CARDIO;
             Parent root = FXMLLoader.load(getClass().getResource("/View/addExercise.fxml"));
             Launch.newWindow(root, new Stage());
             Launch.stage.setAlwaysOnTop(true);
         }
     }
 
-    public static String getExercise() {
+    public static Exercise.Type getExercise() {
         return exercise;
     }
 }

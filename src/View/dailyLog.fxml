@@ -403,12 +403,7 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="75.0" prefWidth="300.0">
                            <children>
-                              <Label layoutX="60.0" layoutY="25.0" text="Net Calories Today:" textFill="#000000cc">
-                                 <font>
-                                    <Font name="PingFang HK Light" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="229.0" layoutY="25.0" prefWidth="65.0" text="0" textFill="#000000cc">
+                              <Label fx:id="net" alignment="CENTER" prefHeight="75.0" prefWidth="300.0" text="Net Calories Today: 0" textFill="#000000cc">
                                  <font>
                                     <Font name="PingFang HK Light" size="18.0" />
                                  </font>

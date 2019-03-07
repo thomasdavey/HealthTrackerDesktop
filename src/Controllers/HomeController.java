@@ -54,7 +54,7 @@ public class HomeController implements Initializable {
 
         java.sql.Date today = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         try {
-            todayCalories = LoadUser.getCaloriesByDate(current.getUserName(), today);
+            todayCalories = LoadUser.getCaloriesByDate(current.getUserName(), today, false);
         } catch (SQLException e) {
             DBAdd.addCalories(current.getUserName(), today, todayCalories, "Breakfast");
             DBAdd.addCalories(current.getUserName(), today, todayCalories, "Lunch");

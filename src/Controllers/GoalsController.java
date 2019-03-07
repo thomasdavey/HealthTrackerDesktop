@@ -1,6 +1,7 @@
 package Controllers;
 
 import DBClasses.LoadUser;
+import Model.Goal;
 import application.Launch;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,6 +33,10 @@ public class GoalsController implements Initializable {
     public Line line;
     public NumberAxis numberAxis;
     public Label dayLeft;
+    public Label start;
+    public Label current;
+    public Label target;
+    public Label progress;
     public ProgressIndicator dayProgress;
     public Label targetWeight;
     public Label currentWeight;
@@ -41,10 +46,15 @@ public class GoalsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Launch.makeStageDraggable(topBar);
         HomeController.setDaysLeft(dayProgress, dayLeft);
-        targetWeight.setText("Target Weight: " + (int)(Launch.getCurrentUser().getGoals().get(0).getStartWeight()-
-                Launch.getCurrentUser().getGoals().get(0).getTargetWeightLoss()) + "kg");
+
+        Goal weightGoal = Launch.getCurrentUser().getGoals().get(0);
+        targetWeight.setText("Target Weight: " + (int)(weightGoal.getStartWeight()-weightGoal.getTargetWeightLoss()) + "kg");
         currentWeight.setText("Current Weight: " + (int)Launch.getCurrentUser().getWeight() + "kg");
         createChart();
+        start.setText("Start Weight: " + (int)weightGoal.getStartWeight() + "%");
+        target.setText(targetWeight.getText());
+        current.setText(currentWeight.getText());
+        progress.setText("Progress: " + (int)weightGoal.getPercentLost() + "%");
     }
 
     private void createChart() {
@@ -69,7 +79,7 @@ public class GoalsController implements Initializable {
 
         for (int i = 0; i < 7; i++) {
             try {
-                int calories = LoadUser.getCaloriesByDate(Launch.getCurrentUser().getUserName(), dates[count]);
+                int calories = LoadUser.getCaloriesByDate(Launch.getCurrentUser().getUserName(), dates[count], false);
                 if (calories < low) low = calories;
                 if (calories > high) high = calories;
                 series.getData().add(new XYChart.Data<>(dateStrings[count], calories));

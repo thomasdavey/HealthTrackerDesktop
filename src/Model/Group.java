@@ -17,6 +17,12 @@ public class Group {
         this.groupName = groupName;
     }
 
+    public Group(ArrayList<User> members, String groupName) {
+        this.members = members;
+        this.groupGoal = null;
+        this.groupName = groupName;
+    }
+
     public ArrayList<User> getMembers() {
 
         return members;

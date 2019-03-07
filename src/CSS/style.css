@@ -206,3 +206,95 @@
     -fx-border-color: rgba(0,0,0,0.3);
     -fx-border-radius: 2px;
 }
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+    -fx-border-width: 0px;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0px;
+    -fx-border-color: rgba(0,0,0,0.1);
+}
+
+.messageWrapper {
+    -fx-spacing: 2px;
+    -fx-max-width: 350px;
+    -fx-padding: 10px 5px 0px 15px;
+}
+
+.message {
+    -fx-background-color: #F8A032;
+    -fx-background-radius: 15px;
+    -fx-text-fill: white;
+    -fx-padding: 5px 10px;
+}
+
+.messageOther {
+    -fx-background-color: rgba(0,0,0,0.2);
+    -fx-background-radius: 15px;
+    -fx-text-fill: white;
+    -fx-padding: 5px 10px;
+}
+
+.messageName {
+    -fx-text-fill: rgba(0,0,0,0.4);
+    -fx-font-size: 10px;
+    -fx-padding: 0px 10px;
+}
+
+.scroll-bar:vertical .track{
+    -fx-background-color: #EAEAEA;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius: 2em;
+}
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-padding: 0 10 0 0;
+
+}
+
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow{
+    -fx-shape: " ";
+    -fx-padding: 0 0.2em;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(0,0,0,0.2);
+    -fx-background-insets: 2.5, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: rgba(0,0,0,0.35);
+}
+
+.scroll-bar:vertical .thumb:pressed {
+    -fx-background-color: rgba(0,0,0,0.35);
+}
+
+.groupBox {
+    -fx-padding: 15px 20px;
+    -fx-spacing: 10px;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: rgba(0,0,0,0.1);
+}
+
+.groupName {
+    -fx-text-fill: rgba(0,0,0,0.6);
+}
+
+.groupInfo {
+    -fx-text-fill: rgba(0,0,0,0.4);
+    -fx-max-width: 180px;
+}
+
+.sendButton:hover *.sendGlyph {
+    -fx-fill: #F8A032;
+}

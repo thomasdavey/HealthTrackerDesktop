@@ -8,12 +8,20 @@ public class Exercise {
         CARDIO
     }
     private Type type;
-    private int calsBurnedPer5Mins;
+    private double calPerMin;
+    private String username;
 
-    public Exercise(String name, Type type, int calsBurnedPer5Mins){
+    public Exercise(String name, Type type, double calPerMin){
         this.name = name;
         this.type = type;
-        this.calsBurnedPer5Mins = calsBurnedPer5Mins;
+        this.calPerMin = calPerMin;
+    }
+
+    public Exercise(String name, Type type, double calPerMin, String username){
+        this.name = name;
+        this.type = type;
+        this.calPerMin = calPerMin;
+        this.username = username;
     }
 
     public String getName() {
@@ -32,12 +40,20 @@ public class Exercise {
         this.type = type;
     }
 
-    public int getCalsBurnedPer5Mins() {
-        return calsBurnedPer5Mins;
+    public double getCalPerMin() {
+        return calPerMin;
     }
 
-    public void setCalsBurnedPer5Mins(int calsBurnedPer5Mins) {
-        this.calsBurnedPer5Mins = calsBurnedPer5Mins;
+    public void setCalPerMin(double calsBurnedPer5Mins) {
+        this.calPerMin = calsBurnedPer5Mins;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public void setUsername(String u) {
+        this.username = u;
     }
 
     public static void main(String args[]){
