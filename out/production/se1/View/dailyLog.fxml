@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: white;" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DailyLogController">
+   <children>
+      <VBox prefHeight="650.0" prefWidth="225.0" style="-fx-background-color: linear-gradient(to bottom, #f37335, #fdc830);">
+         <children>
+            <Label alignment="CENTER" prefHeight="135.0" prefWidth="225.0" style="-fx-font-size: 27;" text="Longevity" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView glyphName="HEARTBEAT" style="-fx-fill: white; -fx-font-size: 27;" />
+               </graphic>
+            </Label>
+            <HBox onMouseClicked="#toHome" prefWidth="225.0" styleClass="sceneButton">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="60.0">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="16" styleClass="sceneButtonGlyph" />
+                     </graphic>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="40.0" prefWidth="165.0" text="Home" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox onMouseClicked="#toDailyLog" prefWidth="225.0" styleClass="sceneButtonSelected">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="60.0">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_CHECK_ALT" size="16" styleClass="sceneButtonGlyphSelected" />
+                     </graphic>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="40.0" prefWidth="165.0" text="Daily Log" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox onMouseClicked="#toGoals" prefWidth="225.0" styleClass="sceneButton">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="60.0">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="LINE_CHART" size="16" styleClass="sceneButtonGlyph" />
+                     </graphic>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="40.0" prefWidth="165.0" text="Goals" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox onMouseClicked="#toGroups" prefWidth="225.0" styleClass="sceneButton">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="60.0">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="16" styleClass="sceneButtonGlyph" />
+                     </graphic>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="40.0" prefWidth="165.0" text="Groups" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox onMouseClicked="#toSettings" prefWidth="225.0" styleClass="sceneButton">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="60.0">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="COG" size="16" styleClass="sceneButtonGlyph" />
+                     </graphic>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="40.0" prefWidth="165.0" text="Settings" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="225.0" prefHeight="650.0" prefWidth="775.0">
+         <children>
+            <HBox fx:id="topBar" alignment="CENTER_RIGHT" prefWidth="775.0" style="-fx-border-color: rgba(0,0,0,0.1); -fx-border-width: 0px 0px 1px 0px;">
+               <children>
+                  <Label prefWidth="665.0" style="-fx-text-fill: #818181;" text="Daily Log" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#minimise" prefHeight="30.0" prefWidth="30.0" styleClass="topButton2">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="MINUS" styleClass="topGlyph2" translateY="1.0" />
+                     </graphic>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#close" prefHeight="30.0" prefWidth="30.0" styleClass="topButton2">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CLOSE" styleClass="topGlyph2" />
+                     </graphic>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutY="30.0" prefWidth="775.0">
+               <children>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="475.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                     </padding>
+                     <children>
+                        <Label text="Keep Track of Your Day">
+                           <font>
+                              <Font name="PingFang HK Thin" size="30.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="40.0" />
+                           </padding>
+                        </Label>
+                        <HBox alignment="TOP_CENTER" prefHeight="185.0" prefWidth="375.0" spacing="15.0">
+                           <children>
+                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0">
+                                 <children>
+                                    <ProgressIndicator fx:id="calorieProgress" prefHeight="150.0" prefWidth="150.0" progress="0.82" />
+                                    <Circle fill="WHITE" layoutX="75.0" layoutY="66.0" radius="46.0" stroke="WHITE" strokeType="INSIDE" />
+                                    <Label fx:id="calorieLeft" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="100.0" prefWidth="100.0" text="1781" textFill="#00000080">
+                                       <font>
+                                          <Font name="PingFang HK Ultralight" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutY="140.0" prefWidth="150.0" text="Calories Remaining" textAlignment="CENTER" textFill="#000000cc">
+                                       <font>
+                                          <Font name="PingFang HK Thin" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0">
+                                 <children>
+                                    <ProgressIndicator fx:id="exerciseProgress" prefHeight="150.0" prefWidth="150.0" progress="0.72" style="-fx-progress-color: #8BC1E7;" />
+                                    <Circle fill="WHITE" layoutX="75.0" layoutY="66.0" radius="46.0" stroke="WHITE" strokeType="INSIDE" />
+                                    <Label fx:id="exerciseLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="100.0" prefWidth="100.0" text="380" textFill="#00000080">
+                                       <font>
+                                          <Font name="PingFang HK Ultralight" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutY="140.0" prefWidth="150.0" text="Calories Burned" textAlignment="CENTER" textFill="#000000cc">
+                                       <font>
+                                          <Font name="PingFang HK Thin" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="375.0" style="-fx-background-color: linear-gradient(to bottom, #8BC1E7, #D4E8F6);">
+                           <children>
+                              <VBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="225.0" prefWidth="350.0" spacing="15.0" style="-fx-background-color: white;">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="350.0">
+                                       <children>
+                                          <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="/Images/gym.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label prefWidth="260.0" text="Strength Workout">
+                                             <font>
+                                                <Font name="PingFang HK Light" size="22.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                             <padding>
+                                                <Insets left="5.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="30.0">
+                                             <graphic>
+                                                <FontAwesomeIconView fill="#00000080" glyphName="PLUS_CIRCLE" onMouseClicked="#addStrength" size="30" styleClass="circleAdd2" />
+                                             </graphic>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="350.0">
+                                       <children>
+                                          <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="/Images/running-3.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label prefWidth="260.0" text="Cardio Workout">
+                                             <font>
+                                                <Font name="PingFang HK Light" size="22.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                             <padding>
+                                                <Insets left="5.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="30.0">
+                                             <graphic>
+                                                <FontAwesomeIconView fill="#00000080" glyphName="PLUS_CIRCLE" onMouseClicked="#addCardio" size="30" styleClass="circleAdd2" />
+                                             </graphic>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="350.0">
+                                       <children>
+                                          <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="/Images/weight.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label prefWidth="260.0" text="Update Weight">
+                                             <font>
+                                                <Font name="PingFang HK Light" size="22.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                             <padding>
+                                                <Insets left="5.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="30.0">
+                                             <graphic>
+                                                <FontAwesomeIconView fill="#00000080" glyphName="COG" size="30" styleClass="circleAdd2" />
+                                             </graphic>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets left="25.0" right="25.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="620.0" prefWidth="300.0" spacing="10.0" style="-fx-border-color: rgba(0,0,0,0.1); -fx-border-width: 0px 0px 0px 1px;">
+                     <children>
+                        <AnchorPane prefHeight="75.0" prefWidth="300.0">
+                           <children>
+                              <Label layoutX="24.0" layoutY="9.0" text="Breakfast: ">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="24.0" layoutY="46.0" text="Suggested Calories:" textFill="#000000cc">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="22.0" prefHeight="30.0" prefWidth="30.0">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#00000080" glyphName="PLUS_CIRCLE" onMouseClicked="#addBreakfast" size="30" styleClass="circleAdd" />
+                                 </graphic>
+                              </Label>
+                              <Label fx:id="breakCurrent" layoutX="144.0" layoutY="9.0" prefWidth="100.0" text="0">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="breakCalories" layoutX="150.0" layoutY="46.0" prefWidth="100.0" text="0" textFill="#000000cc">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="75.0" prefWidth="300.0">
+                           <children>
+                              <Label layoutX="24.0" layoutY="9.0" text="Lunch: ">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="24.0" layoutY="46.0" text="Suggested Calories:" textFill="#000000cc">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="22.0" prefHeight="30.0" prefWidth="30.0">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#00000080" glyphName="PLUS_CIRCLE" onMouseClicked="#addLunch" size="30" styleClass="circleAdd" />
+                                 </graphic>
+                              </Label>
+                              <Label fx:id="lunchCurrent" layoutX="104.0" layoutY="9.0" prefWidth="100.0" text="0">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lunchCalories" layoutX="150.0" layoutY="46.0" prefWidth="100.0" text="0" textFill="#000000cc">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="75.0" prefWidth="300.0">
+                           <children>
+                              <Label layoutX="24.0" layoutY="9.0" text="Dinner: ">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="24.0" layoutY="46.0" text="Suggested Calories:" textFill="#000000cc">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="22.0" prefHeight="30.0" prefWidth="30.0">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#00000080" glyphName="PLUS_CIRCLE" onMouseClicked="#addDinner" size="30" styleClass="circleAdd" />
+                                 </graphic>
+                              </Label>
+                              <Label fx:id="dinnerCurrent" layoutX="109.0" layoutY="9.0" prefWidth="100.0" text="0">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="dinnerCalories" layoutX="150.0" layoutY="46.0" prefWidth="100.0" text="0" textFill="#000000cc">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="75.0" prefWidth="300.0">
+                           <children>
+                              <Label layoutX="24.0" layoutY="9.0" text="Snack: ">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="24.0" layoutY="46.0" text="Suggested Calories:" textFill="#000000cc">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="22.0" prefHeight="30.0" prefWidth="30.0">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#00000080" glyphName="PLUS_CIRCLE" onMouseClicked="#addSnack" size="30" styleClass="circleAdd" />
+                                 </graphic>
+                              </Label>
+                              <Label fx:id="snackCurrent" layoutX="105.0" layoutY="9.0" prefWidth="100.0" text="0">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="snackCalories" layoutX="150.0" layoutY="46.0" prefWidth="100.0" text="0" textFill="#000000cc">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="75.0" prefWidth="300.0">
+                           <children>
+                              <Label fx:id="net" alignment="CENTER" prefHeight="75.0" prefWidth="300.0" text="Net Calories Today: 0" textFill="#000000cc">
+                                 <font>
+                                    <Font name="PingFang HK Light" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

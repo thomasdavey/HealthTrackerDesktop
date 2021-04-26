@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="325.0" style="-fx-background-color: linear-gradient(to bottom, #8BC1E7, #D4E8F6);" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddExerciseController">
+    <children>
+        <HBox fx:id="topBar" alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="325.0" style="-fx-background-color: rgba(255,255,255,0.25);">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimise" prefHeight="30.0" prefWidth="30.0" styleClass="topButton3">
+                    <graphic>
+                        <FontAwesomeIconView glyphName="MINUS" styleClass="topGlyph3" translateY="1.0" />
+                    </graphic>
+                </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#close" prefHeight="30.0" prefWidth="30.0" styleClass="topButton3">
+                    <graphic>
+                        <FontAwesomeIconView glyphName="CLOSE" styleClass="topGlyph3" />
+                    </graphic>
+                </Label>
+            </children>
+        </HBox>
+        <Label fx:id="label" alignment="CENTER" layoutY="54.0" prefWidth="325.0" style="-fx-font-size: 30;" text="Add Exercise" textFill="WHITE" />
+      <HBox layoutY="115.0" prefHeight="210.0" prefWidth="325.0" style="-fx-background-color: white;" />
+      <HBox layoutY="115.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="170.0" prefWidth="325.0" spacing="13.0">
+               <children>
+                  <ComboBox fx:id="selection" prefHeight="30.0" prefWidth="250.0" promptText="Selection" styleClass="registerField" />
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" styleClass="registerField">
+                     <children>
+                        <TextField fx:id="duration" prefWidth="210.0" promptText="Duration" style="-fx-prompt-text-fill: rgba(0,0,0,0.4); -fx-text-fill: rgba(0,0,0,0.8); -fx-background-color: transparent;" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="40.0" text="min" textFill="#00000066" />
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" onMouseClicked="#addCustom" prefHeight="30.0" prefWidth="250.0" styleClass="registerButton" text="Add Custom" />
+                  <Button mnemonicParsing="false" onMouseClicked="#submit" prefHeight="30.0" prefWidth="250.0" styleClass="submitButton2" text="Submit" />
+               </children>
+               <padding>
+                  <Insets top="25.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+    </children>
+</AnchorPane>
